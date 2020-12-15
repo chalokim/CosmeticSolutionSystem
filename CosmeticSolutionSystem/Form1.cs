@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CosmeticSolutionSystem
 {
-    public partial class MonthlyDailySalesVolume : Form
+    public partial class Form1 : Form
     {
-        public MonthlyDailySalesVolume()
+        public Form1()
         {
             InitializeComponent();
         }
