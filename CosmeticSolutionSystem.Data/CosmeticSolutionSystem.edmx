@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CosmeticSolutionSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CosmeticSolutionSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="BrandId" />
           </Key>
           <Property Name="BrandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BrandName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="BrandTag" Type="int" />
+          <Property Name="BrandTag" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -29,11 +29,6 @@
           <Property Name="Birth" Type="int" Nullable="false" />
           <Property Name="Gender" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--생성 중 오류 발생:
-경고 6013: 테이블/뷰 'CosmeticSolutionSystem.dbo.MonthlySales'에 기본 키가 정의되어 있지 않고 올바른 기본 키를 유추할 수 없습니다. 이 테이블/뷰가 제외되었습니다. 엔터티를 사용하려면 스키마를 검토하고 올바른 키를 추가하고 주석 처리를 제거하십시오.
-        <EntityType Name="MonthlySales">
-          <Property Name="MonthlySalesId" Type="int" />
-        </EntityType>-->
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -194,20 +189,10 @@
             <End Role="SalesLine" EntitySet="SalesLine" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CosmeticSolutionSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Brand">
-          <Key>
-            <PropertyRef Name="BrandId" />
-          </Key>
-          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BrandTag" Type="Int32" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -235,9 +220,9 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MarketPrice" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_CategoryId" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="SalesLines" Relationship="Self.FK_SalesLine_Product" FromRole="Product" ToRole="SalesLine" />
+          <NavigationProperty Name="Brand" Relationship="CosmeticSolutionSystemModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -288,18 +273,6 @@
           <Property Name="당기순이익" Type="Int32" Nullable="false" />
           <Property Name="년도" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Product_Brand">
-          <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Brand">
-              <PropertyRef Name="BrandId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="BrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Product_CategoryId">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -349,17 +322,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CosmeticSolutionSystemEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Sales" EntityType="Self.Sale" />
           <EntitySet Name="SalesLines" EntityType="Self.SalesLine" />
           <EntitySet Name="재무제표" EntityType="Self.재무제표" />
-          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
-            <End Role="Brand" EntitySet="Brands" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
           <AssociationSet Name="FK_Product_CategoryId" Association="Self.FK_Product_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
@@ -376,22 +344,39 @@
             <End Role="Sales" EntitySet="Sales" />
             <End Role="SalesLine" EntitySet="SalesLines" />
           </AssociationSet>
+          <EntitySet Name="Brands" EntityType="CosmeticSolutionSystemModel.Brand" />
+          <AssociationSet Name="FK_Product_Brand" Association="CosmeticSolutionSystemModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="BrandId" />
+          </Key>
+          <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BrandTag" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="CosmeticSolutionSystemModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Product_Brand">
+          <End Type="CosmeticSolutionSystemModel.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="CosmeticSolutionSystemModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="BrandId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CosmeticSolutionSystemModelStoreContainer" CdmEntityContainer="CosmeticSolutionSystemEntities">
-          <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Brand">
-              <MappingFragment StoreEntitySet="Brand">
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
-                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
-                <ScalarProperty Name="BrandTag" ColumnName="BrandTag" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -456,6 +441,15 @@
                 <ScalarProperty Name="영업외손익" ColumnName="영업외손익" />
                 <ScalarProperty Name="당기순이익" ColumnName="당기순이익" />
                 <ScalarProperty Name="년도" ColumnName="년도" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="BrandTag" ColumnName="BrandTag" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

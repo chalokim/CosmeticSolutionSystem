@@ -22,7 +22,7 @@ namespace CosmeticSolutionSystem.Data
     
         public int BrandId { get; set; }
         public string BrandName { get; set; }
-        public Nullable<int> BrandTag { get; set; }
+        public int BrandTag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

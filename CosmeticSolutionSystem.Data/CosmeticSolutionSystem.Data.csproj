@@ -87,6 +87,16 @@
     <Compile Include="EFLibrary\BaseDao.cs" />
     <Compile Include="EFLibrary\DbContextCreator.cs" />
     <Compile Include="EFLibrary\DualKeyDao.cs" />
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
@@ -125,6 +135,14 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
       <LastGenOutput>CosmeticSolutionSystem.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

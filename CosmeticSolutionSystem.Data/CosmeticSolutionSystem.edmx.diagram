@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="39a09351d3d04ebdbcdf39dc410e9727" Name="Diagram1">
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Brand" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Category" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Customer" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Sale" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesLine" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.재무제표" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Product_Brand" ManuallyRouted="false" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Product_CategoryId" ManuallyRouted="false" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Sales_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_SalesLine_Product" ManuallyRouted="false" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_SalesLine_Sales" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Brand" Width="1.5" PointX="0.75" PointY="1.375" />
+        <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Product_Brand" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

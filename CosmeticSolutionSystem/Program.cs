@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CosmeticSolutionSystem.Data;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +18,14 @@ namespace CosmeticSolutionSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            List<Brand> list = BrandDao.GetByBrandName();
+            foreach (var item in list)
+            {
+                Debug.Write(item.BrandName);
+            }
+            
+            //Application.Run(new MainForm());
         }
     }
 }
