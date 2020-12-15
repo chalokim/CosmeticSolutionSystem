@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,17 +53,82 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brand.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CosmeticSolutionSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CosmeticSolutionSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CosmeticSolutionSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CosmeticSolutionSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dao\BrandDao.cs" />
+    <Compile Include="Dao\CategoryDao.cs" />
+    <Compile Include="Dao\CustomerDao.cs" />
+    <Compile Include="Dao\Dao.cs" />
+    <Compile Include="Dao\ProductDao.cs" />
+    <Compile Include="Dao\SalesDao.cs" />
+    <Compile Include="Dao\SalesLine.cs" />
     <Compile Include="EFLibrary\BaseDao.cs" />
     <Compile Include="EFLibrary\DbContextCreator.cs" />
     <Compile Include="EFLibrary\DualKeyDao.cs" />
+    <Compile Include="Product.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EFLibrary\QuadKeyDao.cs" />
     <Compile Include="EFLibrary\SingleKeyDao.cs" />
     <Compile Include="EFLibrary\TripleKeyDao.cs" />
+    <Compile Include="Sale.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesLine.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="재무제표.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="CosmeticSolutionSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CosmeticSolutionSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CosmeticSolutionSystem.edmx.diagram">
+      <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CosmeticSolutionSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
+      <LastGenOutput>CosmeticSolutionSystem.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CosmeticSolutionSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
+      <LastGenOutput>CosmeticSolutionSystem.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
