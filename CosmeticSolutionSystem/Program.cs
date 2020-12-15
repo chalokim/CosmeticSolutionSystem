@@ -18,14 +18,7 @@ namespace CosmeticSolutionSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            List<Brand> list = BrandDao.GetByBrandName();
-            foreach (var item in list)
-            {
-                Debug.Write(item.BrandName);
-            }
-            
-            //Application.Run(new MainForm());
+            Application.Run(new MainForm());
         }
     }
 }
