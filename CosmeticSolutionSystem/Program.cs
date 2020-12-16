@@ -18,6 +18,15 @@ namespace CosmeticSolutionSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            /*
+                        List<Sale> list = SalesDao.GetById();
+                        foreach(var item in list)
+                        {
+                            Debug.WriteLine(item.Time);
+
+                        }*/
+
             Application.Run(new MainForm());
         }
     }

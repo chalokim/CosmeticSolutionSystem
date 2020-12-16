@@ -18,6 +18,18 @@ namespace CosmeticSolutionSystem.Data
         protected override Expression<Func<Sale, int>> KeySelector =>
                 x => x.SalesId;
 
+        public static List<Sale> GetById()
+        {
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                var query = from x in context.Sales                        
+                            select x;
+
+                return query.ToList();
+
+            }
+        }
+
     }
 
 }
