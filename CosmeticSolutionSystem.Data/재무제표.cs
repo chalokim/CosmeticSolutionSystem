@@ -14,6 +14,7 @@ namespace CosmeticSolutionSystem.Data
     
     public partial class 재무제표
     {
+        public int 년도 { get; set; }
         public int 자산 { get; set; }
         public int 부채 { get; set; }
         public int 자본 { get; set; }
@@ -24,6 +25,5 @@ namespace CosmeticSolutionSystem.Data
         public int 영업이익 { get; set; }
         public int 영업외손익 { get; set; }
         public int 당기순이익 { get; set; }
-        public int 년도 { get; set; }
     }
 }

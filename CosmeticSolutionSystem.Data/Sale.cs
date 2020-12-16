@@ -22,11 +22,9 @@ namespace CosmeticSolutionSystem.Data
     
         public int SalesId { get; set; }
         public int CustomerId { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.TimeSpan Time { get; set; }
+        public System.DateTime SelledAt { get; set; }
         public int TotalPrice { get; set; }
     
-        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesLine> SalesLines { get; set; }
     }

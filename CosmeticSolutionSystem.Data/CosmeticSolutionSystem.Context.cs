@@ -25,12 +25,14 @@ namespace CosmeticSolutionSystem.Data
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<SalesLine> SalesLines { get; set; }
         public virtual DbSet<재무제표> 재무제표 { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<SalesStat> SalesStats { get; set; }
+        public virtual DbSet<SalesVeganBrand> SalesVeganBrands { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
     }
 }

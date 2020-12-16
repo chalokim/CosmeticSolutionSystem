@@ -26,9 +26,9 @@ namespace CosmeticSolutionSystem.Data
         public string ProductName { get; set; }
         public int MarketPrice { get; set; }
     
+        public virtual Brand Brand { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesLine> SalesLines { get; set; }
-        public virtual Brand Brand { get; set; }
     }
 }

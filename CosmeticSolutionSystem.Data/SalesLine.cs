@@ -15,7 +15,7 @@ namespace CosmeticSolutionSystem.Data
     public partial class SalesLine
     {
         public int SalesLineId { get; set; }
-        public Nullable<int> SalesId { get; set; }
+        public int SalesId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
     
