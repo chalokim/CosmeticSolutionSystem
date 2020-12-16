@@ -43,7 +43,8 @@ namespace CosmeticSolutionSystem.Data
                             select new
                             {
                                 Date = x.Sale.SelledAt,
-                                TotalPrice = x.Sale.TotalPrice,
+                                // TotalPrice = x.Sale.TotalPrice,
+                                Quantity = x.Quantity,
                                 CategoryName = x.Product.Category.CategoryName
                             };
 
@@ -57,14 +58,14 @@ namespace CosmeticSolutionSystem.Data
 
                     if (model != null)
                     {
-                        model.TotalPrice += item.TotalPrice;
+                        model.Quantity += item.Quantity;
                     }
                     else
                     {
                         model = new SalesModel();
                         model.Date = item.Date;
                         model.CategoryName = item.CategoryName;
-                        model.TotalPrice = item.TotalPrice;
+                        model.Quantity = item.Quantity;
 
                         models.Add(model);
 

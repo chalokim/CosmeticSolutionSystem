@@ -10,7 +10,7 @@ namespace CosmeticSolutionSystem.Data.Models
     {
         public DateTime Date { get; set; }
 
-        public int TotalPrice { get; set; }
+        public int Quantity { get; set; }
 
         public string CategoryName { get; set; }
 

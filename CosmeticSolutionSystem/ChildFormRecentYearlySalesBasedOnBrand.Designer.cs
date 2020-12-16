@@ -32,10 +32,10 @@ namespace CosmeticSolutionSystem
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            this.cosmeticSolutionSystemDataSet = new CosmeticSolutionSystem.CosmeticSolutionSystemDataSet();
+            //this.cosmeticSolutionSystemDataSet = new CosmeticSolutionSystem.CosmeticSolutionSystemDataSet();
             this.cosmeticSolutionSystemDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chartControl = new DevExpress.XtraCharts.ChartControl();
-            ((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSet)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
@@ -44,12 +44,12 @@ namespace CosmeticSolutionSystem
             // 
             // cosmeticSolutionSystemDataSet
             // 
-            this.cosmeticSolutionSystemDataSet.DataSetName = "CosmeticSolutionSystemDataSet";
-            this.cosmeticSolutionSystemDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            //this.cosmeticSolutionSystemDataSet.DataSetName = "CosmeticSolutionSystemDataSet";
+           // this.cosmeticSolutionSystemDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // cosmeticSolutionSystemDataSetBindingSource
             // 
-            this.cosmeticSolutionSystemDataSetBindingSource.DataSource = this.cosmeticSolutionSystemDataSet;
+            //this.cosmeticSolutionSystemDataSetBindingSource.DataSource = this.cosmeticSolutionSystemDataSet;
             this.cosmeticSolutionSystemDataSetBindingSource.Position = 0;
             // 
             // chartControl
@@ -85,7 +85,7 @@ namespace CosmeticSolutionSystem
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ChildFormRecentYearlySalesBasedOnBrand";
             this.Text = "브랜드별 최근 1년 월 매출";
-            ((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSet)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cosmeticSolutionSystemDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
@@ -95,7 +95,7 @@ namespace CosmeticSolutionSystem
         }
 
         #endregion
-        private CosmeticSolutionSystemDataSet cosmeticSolutionSystemDataSet;
+        //private CosmeticSolutionSystemDataSet cosmeticSolutionSystemDataSet;
         private System.Windows.Forms.BindingSource cosmeticSolutionSystemDataSetBindingSource;
         private DevExpress.XtraCharts.ChartControl chartControl;
     }

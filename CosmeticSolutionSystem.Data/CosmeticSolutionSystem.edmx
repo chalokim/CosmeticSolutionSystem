@@ -29,11 +29,6 @@
           <Property Name="Birth" Type="int" Nullable="false" />
           <Property Name="Gender" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--생성 중 오류 발생:
-경고 6013: 테이블/뷰 'CosmeticSolutionSystem.dbo.MonthlySales'에 기본 키가 정의되어 있지 않고 올바른 기본 키를 유추할 수 없습니다. 이 테이블/뷰가 제외되었습니다. 엔터티를 사용하려면 스키마를 검토하고 올바른 키를 추가하고 주석 처리를 제거하십시오.
-        <EntityType Name="MonthlySales">
-          <Property Name="MonthlySalesId" Type="int" />
-        </EntityType>-->
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -58,7 +53,7 @@
             <PropertyRef Name="SalesLineId" />
           </Key>
           <Property Name="SalesLineId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SalesId" Type="int" />
+          <Property Name="SalesId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
@@ -79,22 +74,6 @@
           </Key>
           <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
-        </EntityType>
-        <!--생성 중 오류 발생:
-경고 6002: 테이블/뷰 'CosmeticSolutionSystem.dbo.TempSales'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
-        <EntityType Name="TempSales">
-          <Key>
-            <PropertyRef Name="SalesId" />
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="Date" />
-            <PropertyRef Name="Time" />
-            <PropertyRef Name="TotalPrice" />
-          </Key>
-          <Property Name="SalesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
-          <Property Name="TotalPrice" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="재무제표">
           <Key>
@@ -149,7 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SalesLine_Sales">
-          <End Role="Sales" Type="Self.Sales" Multiplicity="0..1">
+          <End Role="Sales" Type="Self.Sales" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="SalesLine" Type="Self.SalesLine" Multiplicity="*" />
@@ -181,15 +160,6 @@
     [SalesVeganBrand].[Count] AS [Count]
     FROM [dbo].[SalesVeganBrand] AS [SalesVeganBrand]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="TempSales" EntityType="Self.TempSales" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TempSales].[SalesId] AS [SalesId], 
-    [TempSales].[CustomerId] AS [CustomerId], 
-    [TempSales].[Date] AS [Date], 
-    [TempSales].[Time] AS [Time], 
-    [TempSales].[TotalPrice] AS [TotalPrice]
-    FROM [dbo].[TempSales] AS [TempSales]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Product" EntitySet="Product" />
@@ -216,12 +186,10 @@
           <EntitySet Name="Categories" EntityType="CosmeticSolutionSystemModel.Category" />
           <EntitySet Name="Customers" EntityType="CosmeticSolutionSystemModel.Customer" />
           <EntitySet Name="Products" EntityType="CosmeticSolutionSystemModel.Product" />
-          <EntitySet Name="Sales" EntityType="CosmeticSolutionSystemModel.Sale" />
           <EntitySet Name="SalesLines" EntityType="CosmeticSolutionSystemModel.SalesLine" />
           <EntitySet Name="재무제표" EntityType="CosmeticSolutionSystemModel.재무제표" />
           <EntitySet Name="SalesStats" EntityType="CosmeticSolutionSystemModel.SalesStat" />
           <EntitySet Name="SalesVeganBrands" EntityType="CosmeticSolutionSystemModel.SalesVeganBrand" />
-          <EntitySet Name="TempSales" EntityType="CosmeticSolutionSystemModel.TempSale" />
           <AssociationSet Name="FK_Product_Brand" Association="CosmeticSolutionSystemModel.FK_Product_Brand">
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" />
@@ -234,6 +202,7 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="SalesLine" EntitySet="SalesLines" />
           </AssociationSet>
+          <EntitySet Name="Sales" EntityType="CosmeticSolutionSystemModel.Sale" />
           <AssociationSet Name="FK_SalesLine_Sales" Association="CosmeticSolutionSystemModel.FK_SalesLine_Sales">
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SalesLine" EntitySet="SalesLines" />
@@ -278,22 +247,12 @@
           <NavigationProperty Name="Category" Relationship="CosmeticSolutionSystemModel.FK_Product_CategoryId" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="SalesLines" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Product" FromRole="Product" ToRole="SalesLine" />
         </EntityType>
-        <EntityType Name="Sale">
-          <Key>
-            <PropertyRef Name="SalesId" />
-          </Key>
-          <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="SelledAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SalesLines" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Sales" FromRole="Sale" ToRole="SalesLine" />
-        </EntityType>
         <EntityType Name="SalesLine">
           <Key>
             <PropertyRef Name="SalesLineId" />
           </Key>
           <Property Name="SalesLineId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SalesId" Type="Int32" />
+          <Property Name="SalesId" Type="Int32" Nullable="false" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Product" FromRole="SalesLine" ToRole="Product" />
@@ -328,20 +287,6 @@
           </Key>
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TempSale">
-          <Key>
-            <PropertyRef Name="SalesId" />
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="Date" />
-            <PropertyRef Name="Time" />
-            <PropertyRef Name="TotalPrice" />
-          </Key>
-          <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Product_Brand">
           <End Type="CosmeticSolutionSystemModel.Brand" Role="Brand" Multiplicity="1" />
@@ -379,8 +324,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SalesId" />
+          </Key>
+          <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="SelledAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SalesLines" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Sales" FromRole="Sale" ToRole="SalesLine" />
+        </EntityType>
         <Association Name="FK_SalesLine_Sales">
-          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="0..1">
+          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="CosmeticSolutionSystemModel.SalesLine" Role="SalesLine" Multiplicity="*" />
@@ -437,16 +392,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Sale">
-              <MappingFragment StoreEntitySet="Sales">
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="SelledAt" ColumnName="SelledAt" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SalesLines">
             <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.SalesLine">
               <MappingFragment StoreEntitySet="SalesLine">
@@ -489,12 +434,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TempSales">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.TempSale">
-              <MappingFragment StoreEntitySet="TempSales">
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Sale">
+              <MappingFragment StoreEntitySet="Sales">
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SelledAt" ColumnName="SelledAt" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
               </MappingFragment>

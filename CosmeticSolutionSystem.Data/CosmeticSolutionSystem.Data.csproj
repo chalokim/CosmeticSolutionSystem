@@ -107,9 +107,6 @@
     <Compile Include="SalesVeganBrand.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="TempSale.cs">
-      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
-    </Compile>
     <Compile Include="재무제표.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
