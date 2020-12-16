@@ -5,19 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="39a09351d3d04ebdbcdf39dc410e9727" Name="Diagram1">
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Brand" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Category" Width="1.5" PointX="0.75" PointY="5.375" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Customer" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Brand" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Category" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Customer" Width="1.5" PointX="5.75" PointY="4.75" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Product" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Sale" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.Sale" Width="1.5" PointX="3" PointY="5.25" />
         <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesLine" Width="1.5" PointX="5.25" PointY="1.125" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.재무제표" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesEdit" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesStatistic" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesVeganBrand" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.재무제표" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesStat" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.SalesVeganBrand" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CosmeticSolutionSystemModel.TempSale" Width="1.5" PointX="7.75" PointY="6.75" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Product_Brand" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Product_CategoryId" />
-        <AssociationConnector Association="CosmeticSolutionSystemModel.FK_Sales_Customer" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_SalesLine_Product" />
         <AssociationConnector Association="CosmeticSolutionSystemModel.FK_SalesLine_Sales" />
       </Diagram>

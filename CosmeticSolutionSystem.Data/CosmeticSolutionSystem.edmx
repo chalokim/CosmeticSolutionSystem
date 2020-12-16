@@ -29,8 +29,8 @@
           <Property Name="Birth" Type="int" Nullable="false" />
           <Property Name="Gender" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'CosmeticSolutionSystem.dbo.MonthlySales' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <!--생성 중 오류 발생:
+경고 6013: 테이블/뷰 'CosmeticSolutionSystem.dbo.MonthlySales'에 기본 키가 정의되어 있지 않고 올바른 기본 키를 유추할 수 없습니다. 이 테이블/뷰가 제외되었습니다. 엔터티를 사용하려면 스키마를 검토하고 올바른 키를 추가하고 주석 처리를 제거하십시오.
         <EntityType Name="MonthlySales">
           <Property Name="MonthlySalesId" Type="int" />
         </EntityType>-->
@@ -44,30 +44,14 @@ warning 6013: The table/view 'CosmeticSolutionSystem.dbo.MonthlySales' does not 
           <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="MarketPrice" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'CosmeticSolutionSystem.dbo.saleFi' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="saleFi">
-          <Property Name="DDate" Type="date" />
-          <Property Name="Total" Type="int" />
-        </EntityType>-->
         <EntityType Name="Sales">
           <Key>
             <PropertyRef Name="SalesId" />
           </Key>
           <Property Name="SalesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="SelledAt" Type="datetime" Nullable="false" />
           <Property Name="TotalPrice" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesEdit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="SalesEdit">
-          <Key>
-            <PropertyRef Name="Date" />
-          </Key>
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="SubTotal" Type="int" />
         </EntityType>
         <EntityType Name="SalesLine">
           <Key>
@@ -78,17 +62,16 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesEdit' does not hav
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesStatistics' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="SalesStatistics">
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'CosmeticSolutionSystem.dbo.SalesStat'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="SalesStat">
           <Key>
             <PropertyRef Name="Date" />
           </Key>
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="SalesTotal" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'CosmeticSolutionSystem.dbo.SalesVeganBrand'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
         <EntityType Name="SalesVeganBrand">
           <Key>
             <PropertyRef Name="Year" />
@@ -96,6 +79,22 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           </Key>
           <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'CosmeticSolutionSystem.dbo.TempSales'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="TempSales">
+          <Key>
+            <PropertyRef Name="SalesId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="TotalPrice" />
+          </Key>
+          <Property Name="SalesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TotalPrice" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="재무제표">
           <Key>
@@ -137,18 +136,6 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sales_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Sales">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SalesLine_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="SalesLine" Type="Self.SalesLine" Multiplicity="*" />
@@ -162,14 +149,16 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SalesLine_Sales">
-          <End Role="Sales" Type="Self.Sales" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SalesLine" Type="Self.SalesLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sales">
               <PropertyRef Name="SalesId" />
             </Principal>
             <Dependent Role="SalesLine">
-              <PropertyRef Name="ProductId" />
+              <PropertyRef Name="SalesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,23 +170,25 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesLine" EntityType="Self.SalesLine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="재무제표" EntityType="Self.재무제표" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SalesEdit" EntityType="Self.SalesEdit" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="SalesStat" EntityType="Self.SalesStat" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [SalesEdit].[Date] AS [Date], 
-    [SalesEdit].[SubTotal] AS [SubTotal]
-    FROM [dbo].[SalesEdit] AS [SalesEdit]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="SalesStatistics" EntityType="Self.SalesStatistics" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SalesStatistics].[Date] AS [Date], 
-    [SalesStatistics].[SalesTotal] AS [SalesTotal]
-    FROM [dbo].[SalesStatistics] AS [SalesStatistics]</DefiningQuery>
+    [SalesStat].[Date] AS [Date]
+    FROM [dbo].[SalesStat] AS [SalesStat]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="SalesVeganBrand" EntityType="Self.SalesVeganBrand" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SalesVeganBrand].[Year] AS [Year], 
     [SalesVeganBrand].[Count] AS [Count]
     FROM [dbo].[SalesVeganBrand] AS [SalesVeganBrand]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TempSales" EntityType="Self.TempSales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TempSales].[SalesId] AS [SalesId], 
+    [TempSales].[CustomerId] AS [CustomerId], 
+    [TempSales].[Date] AS [Date], 
+    [TempSales].[Time] AS [Time], 
+    [TempSales].[TotalPrice] AS [TotalPrice]
+    FROM [dbo].[TempSales] AS [TempSales]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
             <End Role="Brand" EntitySet="Brand" />
@@ -206,10 +197,6 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <AssociationSet Name="FK_Product_CategoryId" Association="Self.FK_Product_CategoryId">
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sales_Customer" Association="Self.FK_Sales_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesLine_Product" Association="Self.FK_SalesLine_Product">
             <End Role="Product" EntitySet="Product" />
@@ -232,9 +219,9 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <EntitySet Name="Sales" EntityType="CosmeticSolutionSystemModel.Sale" />
           <EntitySet Name="SalesLines" EntityType="CosmeticSolutionSystemModel.SalesLine" />
           <EntitySet Name="재무제표" EntityType="CosmeticSolutionSystemModel.재무제표" />
-          <EntitySet Name="SalesEdits" EntityType="CosmeticSolutionSystemModel.SalesEdit" />
-          <EntitySet Name="SalesStatistics" EntityType="CosmeticSolutionSystemModel.SalesStatistic" />
+          <EntitySet Name="SalesStats" EntityType="CosmeticSolutionSystemModel.SalesStat" />
           <EntitySet Name="SalesVeganBrands" EntityType="CosmeticSolutionSystemModel.SalesVeganBrand" />
+          <EntitySet Name="TempSales" EntityType="CosmeticSolutionSystemModel.TempSale" />
           <AssociationSet Name="FK_Product_Brand" Association="CosmeticSolutionSystemModel.FK_Product_Brand">
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Product" EntitySet="Products" />
@@ -242,10 +229,6 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <AssociationSet Name="FK_Product_CategoryId" Association="CosmeticSolutionSystemModel.FK_Product_CategoryId">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sales_Customer" Association="CosmeticSolutionSystemModel.FK_Sales_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Sale" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesLine_Product" Association="CosmeticSolutionSystemModel.FK_SalesLine_Product">
             <End Role="Product" EntitySet="Products" />
@@ -281,7 +264,6 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Birth" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Sales" Relationship="CosmeticSolutionSystemModel.FK_Sales_Customer" FromRole="Customer" ToRole="Sale" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -302,10 +284,8 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           </Key>
           <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="SelledAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TotalPrice" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="CosmeticSolutionSystemModel.FK_Sales_Customer" FromRole="Sale" ToRole="Customer" />
           <NavigationProperty Name="SalesLines" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Sales" FromRole="Sale" ToRole="SalesLine" />
         </EntityType>
         <EntityType Name="SalesLine">
@@ -335,19 +315,11 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           <Property Name="영업외손익" Type="Int32" Nullable="false" />
           <Property Name="당기순이익" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="SalesEdit">
+        <EntityType Name="SalesStat">
           <Key>
             <PropertyRef Name="Date" />
           </Key>
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SubTotal" Type="Int32" />
-        </EntityType>
-        <EntityType Name="SalesStatistic">
-          <Key>
-            <PropertyRef Name="Date" />
-          </Key>
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="SalesTotal" Type="Int32" />
         </EntityType>
         <EntityType Name="SalesVeganBrand">
           <Key>
@@ -356,6 +328,20 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           </Key>
           <Property Name="Year" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TempSale">
+          <Key>
+            <PropertyRef Name="SalesId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Time" />
+            <PropertyRef Name="TotalPrice" />
+          </Key>
+          <Property Name="SalesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TotalPrice" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_Product_Brand">
           <End Type="CosmeticSolutionSystemModel.Brand" Role="Brand" Multiplicity="1" />
@@ -381,18 +367,6 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sales_Customer">
-          <End Type="CosmeticSolutionSystemModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="Sale">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SalesLine_Product">
           <End Type="CosmeticSolutionSystemModel.Product" Role="Product" Multiplicity="1" />
           <End Type="CosmeticSolutionSystemModel.SalesLine" Role="SalesLine" Multiplicity="*" />
@@ -406,18 +380,20 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SalesLine_Sales">
-          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="CosmeticSolutionSystemModel.SalesLine" Role="SalesLine" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sale">
               <PropertyRef Name="SalesId" />
             </Principal>
             <Dependent Role="SalesLine">
-              <PropertyRef Name="ProductId" />
+              <PropertyRef Name="SalesId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -465,8 +441,7 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
             <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Sale">
               <MappingFragment StoreEntitySet="Sales">
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SelledAt" ColumnName="SelledAt" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
               </MappingFragment>
@@ -499,18 +474,9 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SalesEdits">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.SalesEdit">
-              <MappingFragment StoreEntitySet="SalesEdit">
-                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SalesStatistics">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.SalesStatistic">
-              <MappingFragment StoreEntitySet="SalesStatistics">
-                <ScalarProperty Name="SalesTotal" ColumnName="SalesTotal" />
+          <EntitySetMapping Name="SalesStats">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.SalesStat">
+              <MappingFragment StoreEntitySet="SalesStat">
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -520,6 +486,17 @@ warning 6002: The table/view 'CosmeticSolutionSystem.dbo.SalesVeganBrand' does n
               <MappingFragment StoreEntitySet="SalesVeganBrand">
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempSales">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.TempSale">
+              <MappingFragment StoreEntitySet="TempSales">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SalesId" ColumnName="SalesId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

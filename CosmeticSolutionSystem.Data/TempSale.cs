@@ -12,9 +12,12 @@ namespace CosmeticSolutionSystem.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesVeganBrand
+    public partial class TempSale
     {
-        public int Year { get; set; }
-        public int Count { get; set; }
+        public int SalesId { get; set; }
+        public int CustomerId { get; set; }
+        public System.DateTime Date { get; set; }
+        public System.TimeSpan Time { get; set; }
+        public int TotalPrice { get; set; }
     }
 }
