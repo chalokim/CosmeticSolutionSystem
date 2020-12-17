@@ -33,8 +33,6 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
-
-        public List<SalesModel> GetModels(int month)
         {
             DateTime @from = DateTime.Today.AddMonths(month * -1);
             DateTime to = DateTime.Today;

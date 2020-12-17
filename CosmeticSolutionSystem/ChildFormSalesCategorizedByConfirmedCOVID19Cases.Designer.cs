@@ -122,7 +122,7 @@ namespace CosmeticSolutionSystem
             // 
             // salesModelBindingSource
             // 
-            this.salesModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.SalesModel);
+//            this.salesModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.SalesModel);
             // 
             // ChildFormSalesCategorizedByConfirmedCOVID19Cases
             // 
