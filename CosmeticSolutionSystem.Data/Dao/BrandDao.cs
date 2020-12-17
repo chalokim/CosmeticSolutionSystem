@@ -1,4 +1,5 @@
-﻿using EFLibrary;
+﻿using CosmeticSolutionSystem.Data.Models;
+using EFLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +12,29 @@ namespace CosmeticSolutionSystem.Data
     public class BrandDao : SingleKeyDao<Brand, int>
     {
         internal BrandDao() { }
-        protected override Expression<Func<Brand, bool>> IsKey(int key)
+        protected override Expression<Func<Brand, int>> KeySelector
         {
-            return x => x.BrandId == key;
+            get
+            {
+                return x => x.BrandId;
+            }
+            
         }
-        protected override Expression<Func<Brand, int>> KeySelector =>
-                x => x.BrandId;
-
+        
         public static List<Brand> GetByBrandName()
         {
-            using (var context = new CosmeticSolutionSystemEntities())
+            using (var context = DbContextCreator.Create())
             {
                 var query = from x in context.Brands
-                                // where x.BrandName == brandName
-                                //where x.BrandName.All(t => t.Name.Contains(brandName))
+                                //where x.BrandName == BrandName
+                                //where x.BrandName.All(t => t.Name.Contains(BrandName))
                             select x;
 
                 return query.ToList();
 
             }
         }
+
     }
 
 }

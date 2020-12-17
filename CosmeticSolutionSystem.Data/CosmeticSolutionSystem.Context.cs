@@ -15,6 +15,7 @@ namespace CosmeticSolutionSystem.Data
     
     public partial class CosmeticSolutionSystemEntities : DbContext
     {
+        [Obsolete("이거 쓰면 나쁜 놈")]
         public CosmeticSolutionSystemEntities()
             : base("name=CosmeticSolutionSystemEntities")
         {

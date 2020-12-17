@@ -1,4 +1,5 @@
-﻿using EFLibrary;
+﻿using CosmeticSolutionSystem.Data.Models;
+using EFLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,15 @@ namespace CosmeticSolutionSystem.Data
     public class SalesLineDao : SingleKeyDao<SalesLine, int>
     {
         internal SalesLineDao() { }
-        protected override Expression<Func<SalesLine, bool>> IsKey(int key)
+        protected override Expression<Func<SalesLine, int>> KeySelector
         {
-            return x => x.SalesLineId == key;
+            get
+            {
+                return x => x.SalesLineId;
+            }
         }
-        protected override Expression<Func<SalesLine, int>> KeySelector =>
-                x => x.SalesLineId;
-
+        
+        
     }
 
 }

@@ -1,5 +1,4 @@
-﻿using CosmeticSolutionSystem.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,18 +11,13 @@ namespace EFLibrary
     {
         public T GetByPK(K1 key1, K2 key2, K3 key3, K4 key4)
         {
-            using (var context = DbContextCreator.Context())
+            using (var context = DbContextCreator.Create())
             {
-                var query = context
+                return context
                     .Set<T>()
-                    .Where(IsKey(key1, key2, key3, key4))
-                    .Select(x => x);
-
-                return query.FirstOrDefault();
+                    .Find(key1, key2, key3, key4);
             }
         }
-
-        protected abstract Expression<Func<T, bool>> IsKey(K1 key1, K2 key2, K3 key3, K4 key4);
 
         public void DeleteByPK(K1 key1, K2 key2, K3 key3, K4 key4)
         {

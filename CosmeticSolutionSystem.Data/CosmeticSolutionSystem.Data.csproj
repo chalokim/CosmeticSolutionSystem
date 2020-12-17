@@ -88,6 +88,8 @@
     <Compile Include="EFLibrary\DbContextCreator.cs" />
     <Compile Include="EFLibrary\DualKeyDao.cs" />
     <Compile Include="Models\SalesModel.cs" />
+    <Compile Include="Models\VeganBrandModel.cs" />
+    <Compile Include="Models\SalesOfVeganPerYearModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
