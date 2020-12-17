@@ -33,11 +33,13 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
+        public static List<SalesModel> GetModels(int month)
         {
-            DateTime @from = DateTime.Today.AddMonths(month * -1);
+
+            DateTime @from = DateTime.Today.AddMonths(month * -2);
             DateTime to = DateTime.Today;
 
-            using (CosmeticSolutionSystemEntities context = DbContextCreator.Create())
+            using (CosmeticSolutionSystemEntities context = new CosmeticSolutionSystemEntities())
             {
                 var query = from x in context.SalesLines
                             where x.Sale.SelledAt >= @from && x.Sale.SelledAt <= to
@@ -53,7 +55,7 @@ namespace CosmeticSolutionSystem.Data
 
                 List<SalesModel> models = new List<SalesModel>();
 
-                foreach(var item in list)
+                foreach (var item in list)
                 {
                     SalesModel model = models.Find(x => x.Date == item.Date && x.CategoryName == item.CategoryName);
 
@@ -76,6 +78,58 @@ namespace CosmeticSolutionSystem.Data
                 return models;
             }
         }
+
+
+
+
+
+        public List<CategorizedByAgeModel> GetModelsCategory(int month)
+        {
+            DateTime @from = DateTime.Today.AddMonths(month * -1);
+            DateTime to = DateTime.Today;
+
+            using (CosmeticSolutionSystemEntities context = new CosmeticSolutionSystemEntities())
+            {
+                var query = from x in context.SalesLines
+                            where x.Sale.SelledAt >= @from && x.Sale.SelledAt <= to
+                            select new
+                            {
+                                Date = x.Sale.SelledAt,
+                                Quantity = x.Quantity,
+                                CategoryName = x.Product.Category.CategoryName,
+                                Age = x.Sale.Customer.Birth
+                            };
+
+                var list = query.ToList();
+
+                List<CategorizedByAgeModel> models = new List<CategorizedByAgeModel>();
+
+                foreach (var item in list)
+                {
+                    CategorizedByAgeModel model = models.Find(x => x.Date == item.Date && x.CategoryName == item.CategoryName
+                    && x.Age == item.Age);
+
+                    if (model != null)
+                    {
+                        model.Quantity += item.Quantity;
+                    }
+                    else
+                    {
+                        model = new CategorizedByAgeModel();
+                        model.Date = item.Date;
+                        model.CategoryName = item.CategoryName;
+                        model.Quantity = item.Quantity;
+                        model.Age = item.Age;
+
+                        models.Add(model);
+
+                    }
+                }
+
+                return models;
+            }
+        }
+
 
         public List<TheModel> TwoYearsAgo(int year)
         {

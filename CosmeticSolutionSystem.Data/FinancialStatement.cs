@@ -12,9 +12,10 @@ namespace CosmeticSolutionSystem.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class 재무제표
+    public partial class FinancialStatement
     {
-        public int 년도 { get; set; }
+        public int FinancialStatementId { get; set; }
+        public int Year { get; set; }
         public int 자산 { get; set; }
         public int 부채 { get; set; }
         public int 자본 { get; set; }
