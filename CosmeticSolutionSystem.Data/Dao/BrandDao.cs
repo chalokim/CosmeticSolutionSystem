@@ -1,4 +1,5 @@
-﻿using EFLibrary;
+﻿using CosmeticSolutionSystem.Data.Models;
+using EFLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

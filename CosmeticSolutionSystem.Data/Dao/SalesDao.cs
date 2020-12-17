@@ -31,7 +31,22 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
-        public List<SalesModel> GetModels(int month)
+/*        public List<HourlySalesModel> GetHourlyModel(int hour)
+        {
+            TimeSpan @from = TimeSpan.FromHours(10);
+            TimeSpan to = TimeSpan.FromHours(12);
+
+            using (CosmeticSolutionSystemEntities context = new CosmeticSolutionSystemEntities())
+            {
+                var query = from x in context.Sales
+                            where x.Sale.SelledAt >= @from && x.Sale.SelledAt <= to
+                            select new
+                            {
+                                
+                            };
+            }
+        }
+*/        public List<SalesModel> GetModels(int month)
         {
             DateTime @from = DateTime.Today.AddMonths(month * -1);
             DateTime to = DateTime.Today;
