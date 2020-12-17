@@ -81,11 +81,11 @@ namespace CosmeticSolutionSystem.Data
 
 
 
+        
 
-
-        public List<CategorizedByAgeModel> GetModelsCategory(int month)
+        public static List<CategorizedByAgeModel> GetModelsCategory(int year)
         {
-            DateTime @from = DateTime.Today.AddMonths(month * -1);
+            DateTime @from = DateTime.Today.AddMonths(year * -1);
             DateTime to = DateTime.Today;
 
             using (CosmeticSolutionSystemEntities context = new CosmeticSolutionSystemEntities())

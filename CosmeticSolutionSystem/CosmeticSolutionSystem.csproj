@@ -95,11 +95,11 @@
     <Compile Include="ChildFormSalesCategorizedByConfirmedCOVID19Cases.Designer.cs">
       <DependentUpon>ChildFormSalesCategorizedByConfirmedCOVID19Cases.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildFormCategorizedByAgeAndGenderGroup.cs">
+    <Compile Include="ChildFormCategorizedByAgeGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChildFormCategorizedByAgeAndGenderGroup.Designer.cs">
-      <DependentUpon>ChildFormCategorizedByAgeAndGenderGroup.cs</DependentUpon>
+    <Compile Include="ChildFormCategorizedByAgeGroup.Designer.cs">
+      <DependentUpon>ChildFormCategorizedByAgeGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="ChildFormSalesOfVeganCosmetic.cs">
       <SubType>Form</SubType>
@@ -142,8 +142,8 @@
     <EmbeddedResource Include="ChildFormSalesCategorizedByConfirmedCOVID19Cases.resx">
       <DependentUpon>ChildFormSalesCategorizedByConfirmedCOVID19Cases.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildFormCategorizedByAgeAndGenderGroup.resx">
-      <DependentUpon>ChildFormCategorizedByAgeAndGenderGroup.cs</DependentUpon>
+    <EmbeddedResource Include="ChildFormCategorizedByAgeGroup.resx">
+      <DependentUpon>ChildFormCategorizedByAgeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildFormSalesOfVeganCosmetic.resx">
       <DependentUpon>ChildFormSalesOfVeganCosmetic.cs</DependentUpon>
@@ -167,6 +167,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CosmeticSolutionSystem.Data.Models.CategorizedByAgeModel.datasource" />
     <None Include="CosmeticSolutionSystem.Data.Models.SalesModel.datasource" />
     <None Include="CosmeticSolutionSystem.Data.Models.VeganBrandModel1.datasource" />
     <None Include="packages.config" />

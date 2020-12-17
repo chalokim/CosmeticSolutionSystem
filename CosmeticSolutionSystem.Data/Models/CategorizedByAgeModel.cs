@@ -12,5 +12,6 @@ namespace CosmeticSolutionSystem.Data.Models
         public int Quantity { get; set; }
         public string CategoryName { get; set; }
         public int Age { get; set; }
+
     }
 }

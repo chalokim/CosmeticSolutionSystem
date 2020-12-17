@@ -1,4 +1,5 @@
 ﻿using CosmeticSolutionSystem.Data;
+using DevExpress.XtraCharts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,14 @@ namespace CosmeticSolutionSystem
 {
     public partial class ChildFormSalesCategorizedByConfirmedCOVID19Cases : Form
     {
-        int SaleDate = DateTime.Today.Month;
+        public ChildFormSalesCategorizedByConfirmedCOVID19Cases covid;
+
+        int SaleYear = DateTime.Today.Year;
+        int SaleMonth = DateTime.Today.Month;
+        int lastDayOfMonth = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+
+        //차트 종류에 따른 다이어그램 선언
+        XYDiagram diagram;
         public ChildFormSalesCategorizedByConfirmedCOVID19Cases()
         {
             InitializeComponent();
@@ -21,19 +29,34 @@ namespace CosmeticSolutionSystem
 
         private void ChildFormSalesCategorizedByConfirmedCOVID19Cases_Load(object sender, EventArgs e)
         {
-
-            ChildFormSalesCategorizedByConfirmedCOVID19Cases covid = new ChildFormSalesCategorizedByConfirmedCOVID19Cases();
-            salesModelBindingSource.DataSource = SalesDao.GetModels(SaleDate);
+            covid = new ChildFormSalesCategorizedByConfirmedCOVID19Cases();
+            salesModelBindingSource.DataSource = SalesDao.GetModels(SaleMonth);
+            diagram = (XYDiagram)CovidChart.Diagram;
+      
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-            salesModelBindingSource.DataSource = SalesDao.GetModels(SaleDate -= 1);
+
+            ////diagram.AxisX.VisualRange.MinValue = new DateTime(SaleYear, SaleMonth-1, 1);
+            ////diagram.AxisX.VisualRange.MaxValue = new DateTime(SaleYear, SaleMonth,1);
+            diagram.AxisX.WholeRange.MinValue = new DateTime(SaleYear, SaleMonth - 3, lastDayOfMonth);
+            diagram.AxisX.WholeRange.MaxValue = new DateTime(SaleYear, SaleMonth, lastDayOfMonth);
+
+
         }
 
         private void btnForward_Click(object sender, EventArgs e)
         {
-            salesModelBindingSource.DataSource = SalesDao.GetModels(SaleDate += 1);
+            if(SaleYear >= DateTime.Today.Year && SaleMonth+3 >= DateTime.Today.Month)
+            {
+                _ = btnForward.Enabled;
+            }
+
+            diagram.AxisX.WholeRange.MinValue = new DateTime(SaleYear, SaleMonth, lastDayOfMonth);
+            diagram.AxisX.WholeRange.MaxValue = new DateTime(SaleYear, SaleMonth +3, lastDayOfMonth);
+            SaleMonth += 1;
+
         }
     }
 }
