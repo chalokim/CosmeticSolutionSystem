@@ -17,6 +17,7 @@ namespace CosmeticSolutionSystem.Data
         public static SalesLineDao SalesLine = new SalesLineDao();
         public static FinancialStatementDao FinancialStatement = new FinancialStatementDao();
         public static CovidDao Covid = new CovidDao();
+
     }
 }
 
