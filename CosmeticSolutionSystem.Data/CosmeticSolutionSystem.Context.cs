@@ -34,5 +34,6 @@ namespace CosmeticSolutionSystem.Data
         public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<FinancialStatement> FinancialStatements { get; set; }
+        public virtual DbSet<CovidMonth> CovidMonths { get; set; }
     }
 }

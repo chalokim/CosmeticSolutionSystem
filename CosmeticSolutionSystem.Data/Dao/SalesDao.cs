@@ -150,6 +150,7 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
+
         public List<CategorizedByAgeModel> GetModelsCategory(int year)
         {
             DateTime @from = DateTime.Today.AddMonths(year * -1);

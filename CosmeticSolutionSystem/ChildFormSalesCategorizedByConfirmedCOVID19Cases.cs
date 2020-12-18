@@ -32,6 +32,7 @@ namespace CosmeticSolutionSystem
             //MessageBox.Show(now.ToString());
             covid = new ChildFormSalesCategorizedByConfirmedCOVID19Cases();
             salesModelBindingSource.DataSource = Dao.Sales.GetCovid(SaleMonth);
+            covidModelBindingSource.DataSource = Dao.Covid.GetAll();
             diagram = (XYDiagram)CovidChart.Diagram;
 
         }
