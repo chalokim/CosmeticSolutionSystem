@@ -30,7 +30,7 @@ namespace CosmeticSolutionSystem
         private void ChildFormCategorizedByAgeGroup_Load(object sender, EventArgs e)
         {
             AgeGroup = new ChildFormCategorizedByAgeGroup();
-            categorizedByAgeModelBindingSource.DataSource = SalesDao.GetModelsCategory(DDate);
+            categorizedByAgeModelBindingSource.DataSource = Dao.Sales.GetModelsCategory(DDate);
             diagram = (XYDiagram3D)CategoryAgeChart.Diagram;
         }
 
