@@ -83,6 +83,7 @@ namespace CosmeticSolutionSystem
             this.chartControl1.DataSource = this.bindingSourceTopProduct;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram1.LabelsResolveOverlappingMinIndent = 0;
             this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Legend.Name = "Default Legend";
             this.chartControl1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
@@ -92,13 +93,15 @@ namespace CosmeticSolutionSystem
             series1.DataSource = this.bindingSourceTopProduct;
             series1.Name = "Series 1";
             series1.ValueDataMembersSerializable = "Quantity";
-            sideBySideBarSeriesView1.BarWidth = 1D;
+            sideBySideBarSeriesView1.BarWidth = 0.5D;
             sideBySideBarSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             series1.View = sideBySideBarSeriesView1;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
             this.chartControl1.SeriesTemplate.ArgumentDataMember = "ProductName";
             this.chartControl1.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
+            this.chartControl1.SideBySideBarDistanceFixed = 5;
+            this.chartControl1.SideBySideBarDistanceVariable = 1D;
             this.chartControl1.Size = new System.Drawing.Size(776, 391);
             this.chartControl1.TabIndex = 8;
             // 
