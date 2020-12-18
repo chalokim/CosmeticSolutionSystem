@@ -34,7 +34,7 @@ namespace CosmeticSolutionSystem
             DateTime startDate = new DateTime(dateEditSearch.DateTime.Year, 1, 1);
             DateTime endDate = new DateTime(dateEditSearch.DateTime.Year, 12, 31);
 
-            List<HourlySales> dataSource = Dao.sales.SearchDate(startDate, endDate);
+            List<HourlySales> dataSource = Dao.Sales.SearchDate(startDate, endDate);
             hourlySalesModelBindingSource.DataSource = dataSource;
         }
     }
