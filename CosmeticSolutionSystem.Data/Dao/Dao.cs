@@ -15,6 +15,8 @@ namespace CosmeticSolutionSystem.Data
         public static ProductDao Product = new ProductDao();
         public static SalesDao Sales = new SalesDao();
         public static SalesLineDao SalesLine = new SalesLineDao();
+        public static FinancialStatementDao FinancialStatement = new FinancialStatementDao();
+
     }
 }
 
