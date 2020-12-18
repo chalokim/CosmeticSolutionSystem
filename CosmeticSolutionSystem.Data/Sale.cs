@@ -27,5 +27,6 @@ namespace CosmeticSolutionSystem.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesLine> SalesLines { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

@@ -72,7 +72,7 @@ namespace CosmeticSolutionSystem
             RegisterChildForm("ChildFormSalesCategorizedByConfirmedCOVID19Cases", form);
 
             // 6. 카테고리별 연령대별 비중 남자 - 여자
-            form = new ChildFormCategorizedByAgeAndGenderGroup();
+            form = new ChildFormCategorizedByAgeGroup();
             RegisterChildForm("ChildFormCategorizedByAgeAndGenderGroup", form);
 
             // 7. 비건 화장품 매출

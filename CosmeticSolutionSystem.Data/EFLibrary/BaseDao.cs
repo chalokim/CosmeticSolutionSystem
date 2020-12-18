@@ -1,58 +1,58 @@
 ﻿using System;
-using CosmeticSolutionSystem.Data;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CosmeticSolutionSystem.Data
+namespace EFLibrary
 {
-        public class BaseDao<T> where T : class
+    public class BaseDao<T> where T : class
+    {
+        public int GetCount()
         {
-            public int GetCount()
+            using (var context = DbContextCreator.Create())
             {
-                using (var context = DbContextCreator.Context())
-                {
-                    return context.Set<T>().Count();
-                }
+                return context.Set<T>().Count();
             }
+        }
 
-            public List<T> GetAll()
+        public List<T> GetAll()
+        {
+            using (var context = DbContextCreator.Create())
             {
-                using (var context = DbContextCreator.Context())
-                {
-                    return context.Set<T>().ToList();
-                }
+                return context.Set<T>().ToList();
             }
+        }
 
-            public void Insert(T entity)
+        public void Insert(T entity)
+        {
+            using (var context = DbContextCreator.Create())
             {
-                using (var context = DbContextCreator.Context())
-                {
-                    context.Set<T>().Add(entity);
+                context.Set<T>().Add(entity);
 
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
+        }
 
-            public void Update(T entity)
+        public void Update(T entity)
+        {
+            using (var context = DbContextCreator.Create())
             {
-                using (var context = DbContextCreator.Context())
-                {
-                    context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(entity).State = System.Data.Entity.EntityState.Modified;
 
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
+        }
 
-            public void Delete(T entity)
+        public void Delete(T entity)
+        {
+            using (var context = DbContextCreator.Create())
             {
-                using (var context = DbContextCreator.Context())
-                {
-                    context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
+                context.Entry(entity).State = System.Data.Entity.EntityState.Deleted;
 
-                    context.SaveChanges();
-                }
+                context.SaveChanges();
             }
         }
     }
+}

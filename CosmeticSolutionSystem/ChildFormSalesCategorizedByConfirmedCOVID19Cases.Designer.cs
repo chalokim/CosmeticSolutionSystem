@@ -30,56 +30,20 @@ namespace CosmeticSolutionSystem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraCharts.XYDiagram3D xyDiagram3D1 = new DevExpress.XtraCharts.XYDiagram3D();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
-            DevExpress.XtraCharts.Line3DSeriesView line3DSeriesView1 = new DevExpress.XtraCharts.Line3DSeriesView();
-            this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.CovidChart = new DevExpress.XtraCharts.ChartControl();
+            this.btnPrevious = new DevExpress.XtraEditors.SimpleButton();
+            this.btnForward = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.salesModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram3D1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(line3DSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CovidChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salesModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // simpleButton4
-            // 
-            this.simpleButton4.Location = new System.Drawing.Point(94, 402);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(82, 36);
-            this.simpleButton4.TabIndex = 8;
-            this.simpleButton4.Text = "<";
-            // 
-            // simpleButton3
-            // 
-            this.simpleButton3.Location = new System.Drawing.Point(602, 402);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(82, 36);
-            this.simpleButton3.TabIndex = 7;
-            this.simpleButton3.Text = ">";
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(398, 402);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(188, 36);
-            this.simpleButton2.TabIndex = 6;
-            this.simpleButton2.Text = "이번달";
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(193, 402);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(188, 36);
-            this.simpleButton1.TabIndex = 5;
-            this.simpleButton1.Text = "저번달";
             // 
             // labelControl2
             // 
@@ -89,71 +53,132 @@ namespace CosmeticSolutionSystem
             this.labelControl2.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
             this.labelControl2.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
             this.labelControl2.LineVisible = true;
-            this.labelControl2.Location = new System.Drawing.Point(27, 12);
+            this.labelControl2.Location = new System.Drawing.Point(31, 15);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.ShowLineShadow = false;
-            this.labelControl2.Size = new System.Drawing.Size(750, 30);
+            this.labelControl2.Size = new System.Drawing.Size(857, 37);
             this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "3개월간 코로나 확진자 수에 따른 카테고리별 판매량";
+            this.labelControl2.Text = "5개월간 코로나 확진자 수에 따른 카테고리별 판매량";
             // 
-            // chartControl1
+            // CovidChart
             // 
-            this.chartControl1.DataSource = this.salesModelBindingSource;
-            xyDiagram3D1.AxisY.Interlaced = false;
-            xyDiagram3D1.AxisY.MinorCount = 2;
-            xyDiagram3D1.RotationMatrixSerializable = "0.866984082151209;-0.475236497861143;-0.149962903403334;0;0.478215937935569;0.878" +
-    "060345290449;-0.0178758701291753;0;0.140171744659499;-0.056216555649966;0.988530" +
-    "010100876;0;0;0;0;1";
-            this.chartControl1.Diagram = xyDiagram3D1;
-            this.chartControl1.Legend.Name = "Default Legend";
-            this.chartControl1.Location = new System.Drawing.Point(27, 61);
-            this.chartControl1.Name = "chartControl1";
-            this.chartControl1.SeriesDataMember = "CategoryName";
-            series1.Name = "Series 4";
-            series1.View = lineSeriesView1;
-            this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            this.chartControl1.SeriesTemplate.ArgumentDataMember = "Date";
-            this.chartControl1.SeriesTemplate.SeriesDataMember = "CategoryName";
-            this.chartControl1.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
-            this.chartControl1.SeriesTemplate.View = line3DSeriesView1;
-            this.chartControl1.Size = new System.Drawing.Size(750, 335);
-            this.chartControl1.TabIndex = 11;
+            this.CovidChart.DataSource = this.salesModelBindingSource;
+            xyDiagram1.AxisX.DateTimeScaleOptions.AutoGrid = false;
+            xyDiagram1.AxisX.DateTimeScaleOptions.GridAlignment = DevExpress.XtraCharts.DateTimeGridAlignment.Month;
+            xyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
+            xyDiagram1.AxisX.MinorCount = 3;
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
+            xyDiagram1.AxisX.WholeRange.EndSideMargin = 2.5D;
+            xyDiagram1.AxisX.WholeRange.StartSideMargin = 2.5D;
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            this.CovidChart.Diagram = xyDiagram1;
+            this.CovidChart.Legend.Name = "Default Legend";
+            this.CovidChart.Location = new System.Drawing.Point(28, 60);
+            this.CovidChart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CovidChart.Name = "CovidChart";
+            this.CovidChart.PaletteName = "Concourse";
+            this.CovidChart.SeriesDataMember = "CategoryName";
+            this.CovidChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            this.CovidChart.SeriesTemplate.ArgumentDataMember = "Date";
+            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
+            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnitMultiplier = 5;
+            this.CovidChart.SeriesTemplate.SeriesDataMember = "CategoryName";
+            this.CovidChart.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
+            this.CovidChart.SeriesTemplate.View = stackedBarSeriesView1;
+            this.CovidChart.SideBySideBarDistanceVariable = 5D;
+            this.CovidChart.Size = new System.Drawing.Size(874, 435);
+            this.CovidChart.TabIndex = 12;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Location = new System.Drawing.Point(47, 519);
+            this.btnPrevious.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(149, 29);
+            this.btnPrevious.TabIndex = 20;
+            this.btnPrevious.Text = "<";
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnForward
+            // 
+            this.btnForward.Location = new System.Drawing.Point(689, 519);
+            this.btnForward.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnForward.Name = "btnForward";
+            this.btnForward.Size = new System.Drawing.Size(149, 29);
+            this.btnForward.TabIndex = 19;
+            this.btnForward.Text = ">";
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.BackColor = System.Drawing.Color.White;
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Appearance.Options.UseBackColor = true;
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Appearance.Options.UseTextOptions = true;
+            this.labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.labelControl3.Location = new System.Drawing.Point(446, 519);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(237, 29);
+            this.labelControl3.TabIndex = 18;
+            this.labelControl3.Text = "이번달";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.BackColor = System.Drawing.Color.White;
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Options.UseBackColor = true;
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseTextOptions = true;
+            this.labelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.labelControl1.Location = new System.Drawing.Point(202, 519);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(237, 29);
+            this.labelControl1.TabIndex = 17;
+            this.labelControl1.Text = "저번달";
             // 
             // salesModelBindingSource
             // 
-//            this.salesModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.SalesModel);
+            this.salesModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.SalesModel);
             // 
             // ChildFormSalesCategorizedByConfirmedCOVID19Cases
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chartControl1);
+            this.ClientSize = new System.Drawing.Size(914, 562);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnForward);
+            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.CovidChart);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.simpleButton4);
-            this.Controls.Add(this.simpleButton3);
-            this.Controls.Add(this.simpleButton2);
-            this.Controls.Add(this.simpleButton1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ChildFormSalesCategorizedByConfirmedCOVID19Cases";
             this.Text = "코로나 확진자 수에 따른 카테고리별 판매량";
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram3D1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(line3DSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
+            this.Load += new System.EventHandler(this.ChildFormSalesCategorizedByConfirmedCOVID19Cases_Load);
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CovidChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salesModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private DevExpress.XtraEditors.SimpleButton simpleButton4;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private DevExpress.XtraCharts.ChartControl CovidChart;
+        private DevExpress.XtraEditors.SimpleButton btnPrevious;
+        private DevExpress.XtraEditors.SimpleButton btnForward;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.BindingSource salesModelBindingSource;
     }
 }

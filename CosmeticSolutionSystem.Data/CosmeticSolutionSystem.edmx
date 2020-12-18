@@ -29,6 +29,23 @@
           <Property Name="Birth" Type="int" Nullable="false" />
           <Property Name="Gender" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="FinancialStatement">
+          <Key>
+            <PropertyRef Name="FinancialStatementId" />
+          </Key>
+          <Property Name="FinancialStatementId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="자산" Type="int" Nullable="false" />
+          <Property Name="부채" Type="int" Nullable="false" />
+          <Property Name="자본" Type="int" Nullable="false" />
+          <Property Name="매출액" Type="int" Nullable="false" />
+          <Property Name="매출원가" Type="int" Nullable="false" />
+          <Property Name="매출총이익" Type="int" Nullable="false" />
+          <Property Name="판매비와관리비" Type="int" Nullable="false" />
+          <Property Name="영업이익" Type="int" Nullable="false" />
+          <Property Name="영업외손익" Type="int" Nullable="false" />
+          <Property Name="당기순이익" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -75,22 +92,6 @@
           <Property Name="Year" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="재무제표">
-          <Key>
-            <PropertyRef Name="년도" />
-          </Key>
-          <Property Name="년도" Type="int" Nullable="false" />
-          <Property Name="자산" Type="int" Nullable="false" />
-          <Property Name="부채" Type="int" Nullable="false" />
-          <Property Name="자본" Type="int" Nullable="false" />
-          <Property Name="매출액" Type="int" Nullable="false" />
-          <Property Name="매출원가" Type="int" Nullable="false" />
-          <Property Name="매출총이익" Type="int" Nullable="false" />
-          <Property Name="판매비와관리비" Type="int" Nullable="false" />
-          <Property Name="영업이익" Type="int" Nullable="false" />
-          <Property Name="영업외손익" Type="int" Nullable="false" />
-          <Property Name="당기순이익" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Product_Brand">
           <End Role="Brand" Type="Self.Brand" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -112,6 +113,20 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="CustomerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -145,10 +160,10 @@
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FinancialStatement" EntityType="Self.FinancialStatement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesLine" EntityType="Self.SalesLine" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="재무제표" EntityType="Self.재무제표" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesStat" EntityType="Self.SalesStat" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [SalesStat].[Date] AS [Date]
@@ -168,6 +183,10 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sales_Customer" Association="Self.FK_Sales_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
           <AssociationSet Name="FK_SalesLine_Product" Association="Self.FK_SalesLine_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="SalesLine" EntitySet="SalesLine" />
@@ -184,10 +203,8 @@
         <EntityContainer Name="CosmeticSolutionSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brands" EntityType="CosmeticSolutionSystemModel.Brand" />
           <EntitySet Name="Categories" EntityType="CosmeticSolutionSystemModel.Category" />
-          <EntitySet Name="Customers" EntityType="CosmeticSolutionSystemModel.Customer" />
           <EntitySet Name="Products" EntityType="CosmeticSolutionSystemModel.Product" />
           <EntitySet Name="SalesLines" EntityType="CosmeticSolutionSystemModel.SalesLine" />
-          <EntitySet Name="재무제표" EntityType="CosmeticSolutionSystemModel.재무제표" />
           <EntitySet Name="SalesStats" EntityType="CosmeticSolutionSystemModel.SalesStat" />
           <EntitySet Name="SalesVeganBrands" EntityType="CosmeticSolutionSystemModel.SalesVeganBrand" />
           <AssociationSet Name="FK_Product_Brand" Association="CosmeticSolutionSystemModel.FK_Product_Brand">
@@ -207,6 +224,12 @@
             <End Role="Sale" EntitySet="Sales" />
             <End Role="SalesLine" EntitySet="SalesLines" />
           </AssociationSet>
+          <EntitySet Name="Customers" EntityType="CosmeticSolutionSystemModel.Customer" />
+          <AssociationSet Name="FK_Sales_Customer" Association="CosmeticSolutionSystemModel.FK_Sales_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <EntitySet Name="FinancialStatements" EntityType="CosmeticSolutionSystemModel.FinancialStatement" />
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>
@@ -224,15 +247,6 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="CosmeticSolutionSystemModel.FK_Product_CategoryId" FromRole="Category" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerId" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Birth" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -257,22 +271,6 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Product" FromRole="SalesLine" ToRole="Product" />
           <NavigationProperty Name="Sale" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Sales" FromRole="SalesLine" ToRole="Sale" />
-        </EntityType>
-        <EntityType Name="재무제표">
-          <Key>
-            <PropertyRef Name="년도" />
-          </Key>
-          <Property Name="년도" Type="Int32" Nullable="false" />
-          <Property Name="자산" Type="Int32" Nullable="false" />
-          <Property Name="부채" Type="Int32" Nullable="false" />
-          <Property Name="자본" Type="Int32" Nullable="false" />
-          <Property Name="매출액" Type="Int32" Nullable="false" />
-          <Property Name="매출원가" Type="Int32" Nullable="false" />
-          <Property Name="매출총이익" Type="Int32" Nullable="false" />
-          <Property Name="판매비와관리비" Type="Int32" Nullable="false" />
-          <Property Name="영업이익" Type="Int32" Nullable="false" />
-          <Property Name="영업외손익" Type="Int32" Nullable="false" />
-          <Property Name="당기순이익" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="SalesStat">
           <Key>
@@ -333,6 +331,7 @@
           <Property Name="SelledAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TotalPrice" Type="Int32" Nullable="false" />
           <NavigationProperty Name="SalesLines" Relationship="CosmeticSolutionSystemModel.FK_SalesLine_Sales" FromRole="Sale" ToRole="SalesLine" />
+          <NavigationProperty Name="Customer" Relationship="CosmeticSolutionSystemModel.FK_Sales_Customer" FromRole="Sale" ToRole="Customer" />
         </EntityType>
         <Association Name="FK_SalesLine_Sales">
           <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="1">
@@ -348,6 +347,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Birth" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Sales" Relationship="CosmeticSolutionSystemModel.FK_Sales_Customer" FromRole="Customer" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_Sales_Customer">
+          <End Type="CosmeticSolutionSystemModel.Customer" Role="Customer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CosmeticSolutionSystemModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FinancialStatement">
+          <Key>
+            <PropertyRef Name="FinancialStatementId" />
+          </Key>
+          <Property Name="FinancialStatementId" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="자산" Type="Int32" Nullable="false" />
+          <Property Name="부채" Type="Int32" Nullable="false" />
+          <Property Name="자본" Type="Int32" Nullable="false" />
+          <Property Name="매출액" Type="Int32" Nullable="false" />
+          <Property Name="매출원가" Type="Int32" Nullable="false" />
+          <Property Name="매출총이익" Type="Int32" Nullable="false" />
+          <Property Name="판매비와관리비" Type="Int32" Nullable="false" />
+          <Property Name="영업이익" Type="Int32" Nullable="false" />
+          <Property Name="영업외손익" Type="Int32" Nullable="false" />
+          <Property Name="당기순이익" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -371,16 +411,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Birth" ColumnName="Birth" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Product">
               <MappingFragment StoreEntitySet="Product">
@@ -399,23 +429,6 @@
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
                 <ScalarProperty Name="SalesLineId" ColumnName="SalesLineId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="재무제표">
-            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.재무제표">
-              <MappingFragment StoreEntitySet="재무제표">
-                <ScalarProperty Name="당기순이익" ColumnName="당기순이익" />
-                <ScalarProperty Name="영업외손익" ColumnName="영업외손익" />
-                <ScalarProperty Name="영업이익" ColumnName="영업이익" />
-                <ScalarProperty Name="판매비와관리비" ColumnName="판매비와관리비" />
-                <ScalarProperty Name="매출총이익" ColumnName="매출총이익" />
-                <ScalarProperty Name="매출원가" ColumnName="매출원가" />
-                <ScalarProperty Name="매출액" ColumnName="매출액" />
-                <ScalarProperty Name="자본" ColumnName="자본" />
-                <ScalarProperty Name="부채" ColumnName="부채" />
-                <ScalarProperty Name="자산" ColumnName="자산" />
-                <ScalarProperty Name="년도" ColumnName="년도" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -441,6 +454,34 @@
                 <ScalarProperty Name="SelledAt" ColumnName="SelledAt" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalesId" ColumnName="SalesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birth" ColumnName="Birth" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FinancialStatements">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.FinancialStatement">
+              <MappingFragment StoreEntitySet="FinancialStatement">
+                <ScalarProperty Name="당기순이익" ColumnName="당기순이익" />
+                <ScalarProperty Name="영업외손익" ColumnName="영업외손익" />
+                <ScalarProperty Name="영업이익" ColumnName="영업이익" />
+                <ScalarProperty Name="판매비와관리비" ColumnName="판매비와관리비" />
+                <ScalarProperty Name="매출총이익" ColumnName="매출총이익" />
+                <ScalarProperty Name="매출원가" ColumnName="매출원가" />
+                <ScalarProperty Name="매출액" ColumnName="매출액" />
+                <ScalarProperty Name="자본" ColumnName="자본" />
+                <ScalarProperty Name="부채" ColumnName="부채" />
+                <ScalarProperty Name="자산" ColumnName="자산" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="FinancialStatementId" ColumnName="FinancialStatementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

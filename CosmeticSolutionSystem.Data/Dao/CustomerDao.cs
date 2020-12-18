@@ -12,14 +12,13 @@ namespace CosmeticSolutionSystem.Data
     public class CustomerDao : SingleKeyDao<Customer, int>
     {
         internal CustomerDao() { }
-        protected override Expression<Func<Customer, bool>> IsKey(int key)
+        protected override Expression<Func<Customer, int>> KeySelector
         {
-            return x => x.CustomerId == key;
+            get
+            {
+                return x => x.CustomerId;
+            }
         }
-        protected override Expression<Func<Customer, int>> KeySelector =>
-                x => x.CustomerId;
-
     }
-
 }
 
