@@ -2,6 +2,8 @@
 using EFLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -216,6 +218,56 @@ namespace CosmeticSolutionSystem.Data
 
                     if (sales != null)
                         sales.SalesVolume = item.Quantity;
+                }
+
+                return model;
+            }
+        }
+
+        private static string[] categoryArr = new string[6];
+        // 일별 판매량을 카테고리 별로 가져온다
+        public static List<DaySalesByCategoryModel> GetSalesVolumeByDay(DateTime start )
+        {
+            start = new DateTime(start.Year, start.Month, start.Day);
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                var queryX = from x in context.Categories
+                             orderby x.CategoryName 
+                             select x.CategoryName;
+
+                int i = 0;
+
+                foreach ( var x in queryX )
+                    categoryArr[i] = x.ToString();
+
+
+                //context.Database.Log = (log) => Debug.WriteLine(log);
+
+                var query =  (from x in context.SalesLines
+                             where DbFunctions.TruncateTime( x.Sale.SelledAt) == DbFunctions.TruncateTime( start )
+                             select new
+                             {
+                                 CategoryName = x.Product.Category.CategoryName,
+                                 Quantity = x.Quantity,
+                             }).GroupBy( x => x.CategoryName ).Select(
+                    group => new { group.FirstOrDefault().CategoryName, Quantity = group.Sum( x => x.Quantity) }
+                    );
+
+                var list = query.ToList();
+
+                List<DaySalesByCategoryModel> model = new List<DaySalesByCategoryModel>();
+
+                // 카테고리 6개를 무조건 만든다
+                foreach (var x in queryX)
+                    model.Add(new DaySalesByCategoryModel(x.ToString(), 0));
+
+                foreach (var item in list)
+                {
+                    DaySalesByCategoryModel tempModel = model.Find(x => x.CategoryName == item.CategoryName);
+
+                    if(tempModel != null )
+                        tempModel.Quantity = item.Quantity;
                 }
 
                 return model;
