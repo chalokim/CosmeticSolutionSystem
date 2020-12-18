@@ -54,7 +54,7 @@ namespace CosmeticSolutionSystem
             comboBoxTerm.Items.Add(CosmeticConstant.DateMonth);
             comboBoxTerm.Items.Add(CosmeticConstant.DateYear);
 
-            comboBoxTerm.SelectedItem = "월";
+            comboBoxTerm.SelectedItem = "년";
 
             // 화면 로드 시 데이터를 조회한다
             dateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1);

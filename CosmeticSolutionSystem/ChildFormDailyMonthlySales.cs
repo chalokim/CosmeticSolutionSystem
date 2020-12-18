@@ -83,7 +83,7 @@ namespace CosmeticSolutionSystem
                 ChartTitle chartTitle1 = new ChartTitle();
 
                 // Define the text for the titles.
-                chartTitle1.Text = "일별 판매량";
+                chartTitle1.Text = "카테고리별 일별 판매량";
 
                 chartDayMonthSales.Series[0].Visible = false;
                 chartDayMonthSales.Series[1].Visible = true;

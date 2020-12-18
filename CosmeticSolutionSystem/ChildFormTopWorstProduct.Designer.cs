@@ -30,9 +30,9 @@ namespace CosmeticSolutionSystem
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram3 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView3 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             this.bindingSourceTopProduct = new System.Windows.Forms.BindingSource(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
@@ -49,9 +49,9 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
@@ -81,23 +81,23 @@ namespace CosmeticSolutionSystem
             // chartControl1
             // 
             this.chartControl1.DataSource = this.bindingSourceTopProduct;
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.LabelsResolveOverlappingMinIndent = 0;
-            this.chartControl1.Diagram = xyDiagram1;
+            xyDiagram3.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram3.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram3.LabelsResolveOverlappingMinIndent = 0;
+            this.chartControl1.Diagram = xyDiagram3;
             this.chartControl1.Legend.Name = "Default Legend";
             this.chartControl1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.False;
             this.chartControl1.Location = new System.Drawing.Point(12, 47);
             this.chartControl1.Name = "chartControl1";
-            series1.ArgumentDataMember = "ProductName";
-            series1.DataSource = this.bindingSourceTopProduct;
-            series1.Name = "Series 1";
-            series1.ValueDataMembersSerializable = "Quantity";
-            sideBySideBarSeriesView1.BarWidth = 0.5D;
-            sideBySideBarSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
-            series1.View = sideBySideBarSeriesView1;
+            series3.ArgumentDataMember = "ProductName";
+            series3.DataSource = this.bindingSourceTopProduct;
+            series3.Name = "Series 1";
+            series3.ValueDataMembersSerializable = "Quantity";
+            sideBySideBarSeriesView3.BarWidth = 0.5D;
+            sideBySideBarSeriesView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            series3.View = sideBySideBarSeriesView3;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
+        series3};
             this.chartControl1.SeriesTemplate.ArgumentDataMember = "ProductName";
             this.chartControl1.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
             this.chartControl1.SideBySideBarDistanceFixed = 5;
@@ -107,16 +107,16 @@ namespace CosmeticSolutionSystem
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Location = new System.Drawing.Point(224, 12);
+            this.dateTimePicker.Location = new System.Drawing.Point(214, 12);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(235, 21);
+            this.dateTimePicker.Size = new System.Drawing.Size(471, 21);
             this.dateTimePicker.TabIndex = 7;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(463, 12);
+            this.btnSearch.Location = new System.Drawing.Point(689, 12);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(325, 21);
+            this.btnSearch.Size = new System.Drawing.Size(99, 21);
             this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "조회";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@ namespace CosmeticSolutionSystem
             this.comboBoxTerm.FormattingEnabled = true;
             this.comboBoxTerm.Location = new System.Drawing.Point(44, 12);
             this.comboBoxTerm.Name = "comboBoxTerm";
-            this.comboBoxTerm.Size = new System.Drawing.Size(144, 20);
+            this.comboBoxTerm.Size = new System.Drawing.Size(134, 20);
             this.comboBoxTerm.TabIndex = 5;
             // 
             // Root
@@ -138,8 +138,8 @@ namespace CosmeticSolutionSystem
             this.emptySpaceItem1,
             this.layoutControlItem2,
             this.layoutControlItem4,
-            this.layoutControlItem3,
-            this.layoutControlItem1});
+            this.layoutControlItem1,
+            this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(800, 450);
             this.Root.TextVisible = false;
@@ -157,7 +157,7 @@ namespace CosmeticSolutionSystem
             this.layoutControlItem2.Control = this.comboBoxTerm;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(180, 25);
+            this.layoutControlItem2.Size = new System.Drawing.Size(170, 25);
             this.layoutControlItem2.Text = "기간";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(20, 14);
             // 
@@ -173,18 +173,18 @@ namespace CosmeticSolutionSystem
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnSearch;
-            this.layoutControlItem3.Location = new System.Drawing.Point(451, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(677, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(329, 25);
+            this.layoutControlItem3.Size = new System.Drawing.Size(103, 25);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.dateTimePicker;
-            this.layoutControlItem1.Location = new System.Drawing.Point(180, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(170, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(271, 25);
+            this.layoutControlItem1.Size = new System.Drawing.Size(507, 25);
             this.layoutControlItem1.Text = "날짜";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(20, 14);
             // 
@@ -200,9 +200,9 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTopProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
