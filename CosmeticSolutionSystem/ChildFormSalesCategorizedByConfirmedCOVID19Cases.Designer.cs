@@ -33,6 +33,7 @@ namespace CosmeticSolutionSystem
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY1 = new DevExpress.XtraCharts.SecondaryAxisY();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel1 = new DevExpress.XtraCharts.PointSeriesLabel();
             DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
             DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
             this.covidModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -48,6 +49,7 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salesModelBindingSource)).BeginInit();
@@ -97,9 +99,12 @@ namespace CosmeticSolutionSystem
             this.CovidChart.SeriesDataMember = "CategoryName";
             series1.ArgumentDataMember = "Month";
             series1.DataSource = this.covidModelBindingSource;
-            series1.Name = "Series 4";
+            pointSeriesLabel1.LineStyle.Thickness = 10;
+            series1.Label = pointSeriesLabel1;
+            series1.Name = "확진자 수";
             series1.ValueDataMembersSerializable = "ConfirmedCount";
             lineSeriesView1.AxisYName = "Secondary AxisY 1";
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
             series1.View = lineSeriesView1;
             this.CovidChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
@@ -184,6 +189,7 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(this.covidModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).EndInit();
