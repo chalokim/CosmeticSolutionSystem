@@ -18,9 +18,7 @@ namespace CosmeticSolutionSystem.Data
             {
                 return x => x.SalesId;
             }
-        }
-        
-        
+        }         
         public static List<Sale> GetById()
         {
             using (var context = DbContextCreator.Create())
@@ -30,6 +28,27 @@ namespace CosmeticSolutionSystem.Data
 
                 return query.ToList();
 
+            }
+        }
+
+        public List<HourlySales> SearchDate(DateTime startDate, DateTime endDate)
+        {
+            using (CosmeticSolutionSystemEntities context = new CosmeticSolutionSystemEntities())
+            {
+                var query = from x in context.Sales
+                            where x.SelledAt >= startDate && x.SelledAt <= endDate
+                            select x;
+
+                var groupQuery = from p in query
+                                 where p.SelledAt.Hour >= 1 && p.SelledAt.Hour <= 24
+                                 group p by p.SelledAt.Hour into g
+                                 select new HourlySales
+                                 {
+                                     Hour = g.Key,
+                                     CustomerCount = g.Count()
+                                 };
+
+                return groupQuery.ToList();
             }
         }
 
