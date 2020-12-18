@@ -20,6 +20,14 @@
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="CovidMonth">
+          <Key>
+            <PropertyRef Name="CovidId" />
+          </Key>
+          <Property Name="CovidId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Month" Type="date" Nullable="false" />
+          <Property Name="ConfirmedCount" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -159,6 +167,7 @@
         <EntityContainer Name="CosmeticSolutionSystemModelStoreContainer">
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CovidMonth" EntityType="Self.CovidMonth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FinancialStatement" EntityType="Self.FinancialStatement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -230,6 +239,7 @@
             <End Role="Sale" EntitySet="Sales" />
           </AssociationSet>
           <EntitySet Name="FinancialStatements" EntityType="CosmeticSolutionSystemModel.FinancialStatement" />
+          <EntitySet Name="CovidMonths" EntityType="CosmeticSolutionSystemModel.CovidMonth" />
         </EntityContainer>
         <EntityType Name="Brand">
           <Key>
@@ -388,6 +398,14 @@
           <Property Name="영업외손익" Type="Int32" Nullable="false" />
           <Property Name="당기순이익" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="CovidMonth">
+          <Key>
+            <PropertyRef Name="CovidId" />
+          </Key>
+          <Property Name="CovidId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ConfirmedCount" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -482,6 +500,15 @@
                 <ScalarProperty Name="자산" ColumnName="자산" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="FinancialStatementId" ColumnName="FinancialStatementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CovidMonths">
+            <EntityTypeMapping TypeName="CosmeticSolutionSystemModel.CovidMonth">
+              <MappingFragment StoreEntitySet="CovidMonth">
+                <ScalarProperty Name="ConfirmedCount" ColumnName="ConfirmedCount" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="CovidId" ColumnName="CovidId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
