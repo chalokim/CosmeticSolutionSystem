@@ -6,19 +6,9 @@ using System.Threading.Tasks;
 
 namespace CosmeticSolutionSystem.Data.Models
 {
-    public class SalesModel
+    public class CovidModel
     {
-        public DateTime Date { get; set; }
-
-        public int Quantity { get; set; }
-
-        public string CategoryName { get; set; }
-
-
-
+        public DateTime Month { get; set; }
+        public int ConfirmedCount { get; set; }
     }
-    
-
-
-
 }

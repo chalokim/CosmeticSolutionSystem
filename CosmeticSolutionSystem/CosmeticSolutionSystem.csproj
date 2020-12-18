@@ -173,6 +173,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="CosmeticSolutionSystem.Data.Models.CategorizedByAgeModel.datasource" />
+    <None Include="CosmeticSolutionSystem.Data.Models.CovidModel.datasource" />
     <None Include="CosmeticSolutionSystem.Data.Models.HourlySalesModel.datasource" />
     <None Include="CosmeticSolutionSystem.Data.Models.FinancialStatementModel1.datasource" />
     <None Include="CosmeticSolutionSystem.Data.Models.DayMonthSalesModel.datasource" />

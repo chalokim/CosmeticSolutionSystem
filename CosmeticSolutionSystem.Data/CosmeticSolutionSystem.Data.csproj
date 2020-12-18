@@ -74,11 +74,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
     </Compile>
+    <Compile Include="CovidMonth.cs">
+      <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Dao\BrandDao.cs" />
     <Compile Include="Dao\CategoryDao.cs" />
+    <Compile Include="Dao\CovidDao.cs" />
     <Compile Include="Dao\CustomerDao.cs" />
     <Compile Include="Dao\Dao.cs" />
     <Compile Include="Dao\FinancialStatementDao.cs" />
@@ -92,12 +96,10 @@
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorizedByAgeModel.cs" />
-
+    <Compile Include="Models\CovidModel.cs" />
     <Compile Include="Models\FinancialStatementModel.cs" />
-
     <Compile Include="Models\DayMonthSalesModel.cs" />
     <Compile Include="Models\DaySalesByCategoryModel.cs" />
-
     <Compile Include="Models\HourlySalesModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\HourlySales.cs" />
