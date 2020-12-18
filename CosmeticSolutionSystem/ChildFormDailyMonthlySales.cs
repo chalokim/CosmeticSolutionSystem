@@ -38,6 +38,12 @@ namespace CosmeticSolutionSystem
             {
                 comboBoxInterval.Items.Add(x);
             }
+
+            comboBoxInterval.SelectedItem = "월";
+
+            // 화면 로드 시 데이터를 조회한다
+            dateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
+            btnSearch_Click(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -48,11 +54,6 @@ namespace CosmeticSolutionSystem
                 MessageBox.Show("기간을 다시 선택하세요", "오류");
                 return;
             }
-
-            // 설정된 조건으로 검색한다
-            Button btn = sender as Button;
-            if (btn == null)
-                return;
 
             // 월을 선택하면
             if (comboBoxInterval.SelectedItem.ToString() == CosmeticConstant.DateMonth)

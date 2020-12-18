@@ -128,7 +128,7 @@ namespace CosmeticSolutionSystem
             // 
             // barButtonItem9
             // 
-            this.barButtonItem9.Caption = "Top / Worst 5 제품";
+            this.barButtonItem9.Caption = "Top 5 제품";
             this.barButtonItem9.Id = 9;
             this.barButtonItem9.Name = "barButtonItem9";
             this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
