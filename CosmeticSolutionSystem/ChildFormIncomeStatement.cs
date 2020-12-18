@@ -24,6 +24,8 @@ namespace CosmeticSolutionSystem
         {
             financialStatementModelBindingSource.DataSource = FinancialStatementDao.GetFinancialStatements();
             diagram = (XYDiagram)IncomeChart.Diagram;
+
+            IncomeChart.Animate();
         }
     }
 }
