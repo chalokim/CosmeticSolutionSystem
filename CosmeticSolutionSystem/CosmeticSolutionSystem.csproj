@@ -101,17 +101,17 @@
     <Compile Include="ChildFormCategorizedByAgeGroup.Designer.cs">
       <DependentUpon>ChildFormCategorizedByAgeGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildFormSalesOfVeganCosmetic.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChildFormSalesOfVeganCosmetic.Designer.cs">
-      <DependentUpon>ChildFormSalesOfVeganCosmetic.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChildFormRecentYearlySalesBasedOnBrand.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChildFormRecentYearlySalesBasedOnBrand.Designer.cs">
       <DependentUpon>ChildFormRecentYearlySalesBasedOnBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildFormSalesOfVeganCosmetic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildFormSalesOfVeganCosmetic.Designer.cs">
+      <DependentUpon>ChildFormSalesOfVeganCosmetic.cs</DependentUpon>
     </Compile>
     <Compile Include="ChildFormTopWorstProduct.cs">
       <SubType>Form</SubType>
@@ -145,11 +145,11 @@
     <EmbeddedResource Include="ChildFormCategorizedByAgeGroup.resx">
       <DependentUpon>ChildFormCategorizedByAgeGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildFormSalesOfVeganCosmetic.resx">
-      <DependentUpon>ChildFormSalesOfVeganCosmetic.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ChildFormRecentYearlySalesBasedOnBrand.resx">
       <DependentUpon>ChildFormRecentYearlySalesBasedOnBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildFormSalesOfVeganCosmetic.resx">
+      <DependentUpon>ChildFormSalesOfVeganCosmetic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildFormTopWorstProduct.resx">
       <DependentUpon>ChildFormTopWorstProduct.cs</DependentUpon>

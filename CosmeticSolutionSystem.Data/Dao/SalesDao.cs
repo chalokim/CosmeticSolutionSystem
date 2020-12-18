@@ -131,23 +131,25 @@ namespace CosmeticSolutionSystem.Data
         }
 
 
-        public List<TheModel> TwoYearsAgo(int year)
+        public List<VeganBrandModel> VeganSalesPerYear(int year)
         {
             using (var context = DbContextCreator.Create())
             {
                 DateTime firstDay = DateTime.Today.AddYears(year * -1);
                 DateTime lastDay = DateTime.Today;
 
+
                 var query = from x in context.SalesLines
                             where x.Sale.SelledAt >= firstDay && x.Sale.SelledAt <= lastDay
                             && x.Product.Brand.BrandTag == 0
-                            select new { SelledAt = x.Sale.SelledAt, Quantity = x.Quantity};
+                            select new { SelledAt = x.Sale.SelledAt, Quantity = x.Quantity };
 
                 var list = query.ToList();
 
+
                 var query2 = from x in list
-                             group x by x.SelledAt.Year into g
-                             select new TheModel
+                             group x by x.SelledAt.Year into g   
+                             select new VeganBrandModel
                              {
                                  Year = g.Key,
                                  Quantity = g.Sum(y => y.Quantity)
@@ -157,29 +159,7 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
-        public List<Sale> OneYearAgo(int year)
-        {
-            using (var context = DbContextCreator.Create())
-            {
-                var query = from x in context.Sales
-                            where x.SelledAt.Year == DateTime.Today.Year - 1
-                            select x;
-
-                return query.ToList();
-            }
-        }
-
-        public List<Sale> ThisYear(int year)
-        {
-            using (var context = DbContextCreator.Create())
-            {
-                var query = from x in context.Sales
-                            where x.SelledAt.Year == DateTime.Today.Year
-                            select x;
-
-                return query.ToList();
-            }
-        }
+        
     }
 
 }

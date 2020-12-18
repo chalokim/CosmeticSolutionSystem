@@ -9,12 +9,12 @@ namespace CosmeticSolutionSystem.Data
 {
     public class Dao
     {
-        public static CategoryDao category = new CategoryDao();
-        public static CustomerDao customer = new CustomerDao();
-        public static BrandDao brand = new BrandDao();
-        public static ProductDao product = new ProductDao();
-        public static SalesDao sales = new SalesDao();
-        public static SalesLineDao salesLine = new SalesLineDao();
+        public static CategoryDao Category = new CategoryDao();
+        public static CustomerDao Customer = new CustomerDao();
+        public static BrandDao Brand = new BrandDao();
+        public static ProductDao Product = new ProductDao();
+        public static SalesDao Sales = new SalesDao();
+        public static SalesLineDao SalesLine = new SalesLineDao();
     }
 }
 
