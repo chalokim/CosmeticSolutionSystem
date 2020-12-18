@@ -10,5 +10,7 @@ namespace CosmeticSolutionSystem
     {
         public static readonly string DateMonth = "월";
         public static readonly string DateDay = "일";
+        public static readonly string DateWeek = "주";
+        public static readonly string DateYear = "년";
     }
 }

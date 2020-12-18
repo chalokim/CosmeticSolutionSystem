@@ -95,6 +95,7 @@
     <Compile Include="Models\DaySalesByCategoryModel.cs" />
     <Compile Include="Models\HourlySalesModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
+    <Compile Include="Models\TopWorstProductModel.cs" />
     <Compile Include="Models\VeganBrandModel.cs" />
     <Compile Include="Models\SalesOfVeganPerYearModel.cs" />
     <Compile Include="Product.cs">
