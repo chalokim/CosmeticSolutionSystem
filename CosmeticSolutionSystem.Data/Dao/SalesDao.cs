@@ -180,6 +180,47 @@ namespace CosmeticSolutionSystem.Data
                 return query.ToList();
             }
         }
+
+        public static List<DayMonthSalesModel> GetSalesVolumeByMonth(DateTime startMonth)
+        {
+            int cntMonths = 12;
+
+            DateTime start = new DateTime(
+                startMonth.Year, startMonth.Month, 1);
+            DateTime end = start.AddMonths(cntMonths);
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                var query = (from x in context.SalesLines
+                             where x.Sale.SelledAt >= start && x.Sale.SelledAt <= end
+                             select new
+                             {
+                                 Date = x.Sale.SelledAt,
+                                 Quantity = x.Quantity,
+                             }).GroupBy(x => x.Date.Month).Select(
+                                group => new { group.FirstOrDefault().Date, Quantity = group.Sum(x => x.Quantity) });
+
+                var list = query.ToList();
+
+                List<DayMonthSalesModel> model = new List<DayMonthSalesModel>();
+
+                for (int i = 0; i < cntMonths; i++)
+                {
+                    DateTime months = start.AddMonths(i);
+                    model.Add(new DayMonthSalesModel(months, 0));
+                }
+
+                foreach (var item in list)
+                {
+                    DayMonthSalesModel sales = model.Find(x => x.Date.Month == item.Date.Month);
+
+                    if (sales != null)
+                        sales.SalesVolume = item.Quantity;
+                }
+
+                return model;
+            }
+        }
     }
 
 }

@@ -91,6 +91,7 @@
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorizedByAgeModel.cs" />
+    <Compile Include="Models\DayMonthSalesModel.cs" />
     <Compile Include="Models\HourlySalesModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\VeganBrandModel.cs" />
