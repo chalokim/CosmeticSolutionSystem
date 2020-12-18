@@ -35,20 +35,19 @@ namespace CosmeticSolutionSystem
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
-            this.bindingSourceDaySales = new System.Windows.Forms.BindingSource(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
             this.comboBoxInterval = new System.Windows.Forms.ComboBox();
             this.chartDayMonthSales = new DevExpress.XtraCharts.ChartControl();
-            this.bindingSourceMonthDaySales = new System.Windows.Forms.BindingSource(this.components);
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDaySales)).BeginInit();
+            this.bindingSourceMonthDaySales = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceDaySales = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDayMonthSales)).BeginInit();
@@ -56,18 +55,15 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMonthDaySales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMonthDaySales)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDaySales)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bindingSourceDaySales
-            // 
-            this.bindingSourceDaySales.DataSource = typeof(CosmeticSolutionSystem.Data.Models.DaySalesByCategoryModel);
             // 
             // layoutControl1
             // 
@@ -136,10 +132,6 @@ namespace CosmeticSolutionSystem
             this.chartDayMonthSales.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
             chartTitle1});
             // 
-            // bindingSourceMonthDaySales
-            // 
-            this.bindingSourceMonthDaySales.DataSource = typeof(CosmeticSolutionSystem.Data.Models.DayMonthSalesModel);
-            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -198,6 +190,14 @@ namespace CosmeticSolutionSystem
             this.layoutControlItem2.Text = "날짜";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(20, 14);
             // 
+            // bindingSourceMonthDaySales
+            // 
+            this.bindingSourceMonthDaySales.DataSource = typeof(CosmeticSolutionSystem.Data.Models.DayMonthSalesModel);
+            // 
+            // bindingSourceDaySales
+            // 
+            this.bindingSourceDaySales.DataSource = typeof(CosmeticSolutionSystem.Data.Models.DaySalesByCategoryModel);
+            // 
             // ChildFormDailyMonthlySales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -207,7 +207,6 @@ namespace CosmeticSolutionSystem
             this.Name = "ChildFormDailyMonthlySales";
             this.Text = "일별 월별 판매량";
             this.Load += new System.EventHandler(this.ChildFormDailyMonthlySales_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDaySales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
@@ -215,13 +214,14 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartDayMonthSales)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMonthDaySales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceMonthDaySales)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDaySales)).EndInit();
             this.ResumeLayout(false);
 
         }

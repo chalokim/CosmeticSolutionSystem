@@ -102,7 +102,11 @@
     <Compile Include="Models\DaySalesByCategoryModel.cs" />
     <Compile Include="Models\HourlySalesModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
+
+    <Compile Include="Models\TopWorstProductModel.cs" />
+
     <Compile Include="Models\HourlySales.cs" />
+
     <Compile Include="Models\VeganBrandModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>

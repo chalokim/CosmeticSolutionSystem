@@ -104,6 +104,7 @@ namespace CosmeticSolutionSystem.Data
         }
 
 
+
       
         public List<SalesModel> GetCovid(int month)
         {
@@ -139,6 +140,7 @@ namespace CosmeticSolutionSystem.Data
                         model.Date = item.Date;
                         model.CategoryName = item.CategoryName;
                         model.Quantity = item.Quantity;
+
 
                         models.Add(model);
 
@@ -343,6 +345,63 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
-    }
 
+        public static List<TopWorstProductModel> GetTopProductByMonth(DateTime month)
+        {
+            DateTime start = new DateTime(month.Year, month.Month, 1);
+            DateTime end = start.AddMonths(1); // 기간을 한달로 설정
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                var query = (from x in context.SalesLines
+                             where x.Sale.SelledAt >= start && x.Sale.SelledAt <= end
+                             select new
+                            {
+                                ProductName = x.Product.ProductName,
+                                Quantity = x.Quantity,
+                            }).GroupBy(x => x.ProductName).Select(
+                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(5);
+
+                var list = query.ToList();
+
+                List<TopWorstProductModel> model = new List<TopWorstProductModel>();
+
+                foreach (var x in list)
+                {
+                    model.Add(new TopWorstProductModel(x.ProductName, x.Quantity));
+                }
+
+                return model;
+            }
+        }
+
+        public static List<TopWorstProductModel> GetTopProductByYear(DateTime year)
+        {
+            DateTime start = new DateTime(year.Year, 1, 1);
+            DateTime end = start.AddYears(1); // 기간을 1년으로 설정
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                var query = (from x in context.SalesLines
+                             where x.Sale.SelledAt >= start && x.Sale.SelledAt <= end
+                             select new
+                             {
+                                 ProductName = x.Product.ProductName,
+                                 Quantity = x.Quantity,
+                             }).GroupBy(x => x.ProductName).Select(
+                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(5);
+
+                var list = query.ToList();
+
+                List<TopWorstProductModel> model = new List<TopWorstProductModel>();
+
+                foreach (var x in list)
+                {
+                    model.Add(new TopWorstProductModel(x.ProductName, x.Quantity));
+                }
+
+                return model;
+            }
+        }
+    }
 }
