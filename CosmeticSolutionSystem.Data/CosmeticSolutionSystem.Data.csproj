@@ -81,6 +81,7 @@
     <Compile Include="Dao\CategoryDao.cs" />
     <Compile Include="Dao\CustomerDao.cs" />
     <Compile Include="Dao\Dao.cs" />
+    <Compile Include="Dao\FinancialStatementDao.cs" />
     <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Dao\SalesDao.cs" />
     <Compile Include="Dao\SalesLineDao.cs" />
@@ -91,6 +92,7 @@
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategorizedByAgeModel.cs" />
+    <Compile Include="Models\FinancialStatementModel.cs" />
     <Compile Include="Models\HourlySalesModel.cs" />
     <Compile Include="Models\SalesModel.cs" />
     <Compile Include="Models\VeganBrandModel.cs" />

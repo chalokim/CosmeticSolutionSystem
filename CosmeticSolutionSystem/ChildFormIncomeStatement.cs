@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CosmeticSolutionSystem.Data;
+using DevExpress.XtraCharts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,16 @@ namespace CosmeticSolutionSystem
 {
     public partial class ChildFormIncomeStatement : Form
     {
+        XYDiagram diagram;
         public ChildFormIncomeStatement()
         {
             InitializeComponent();
+        }
+
+        private void ChildFormIncomeStatement_Load(object sender, EventArgs e)
+        {
+            financialStatementModelBindingSource.DataSource = FinancialStatementDao.GetFinancialStatements();
+            diagram = (XYDiagram)IncomeChart.Diagram;
         }
     }
 }
