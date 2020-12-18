@@ -59,12 +59,14 @@ namespace CosmeticSolutionSystem
             this.labelControl2.ShowLineShadow = false;
             this.labelControl2.Size = new System.Drawing.Size(857, 37);
             this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "3개월간 코로나 확진자 수에 따른 카테고리별 판매량";
+            this.labelControl2.Text = "5개월간 코로나 확진자 수에 따른 카테고리별 판매량";
             // 
             // CovidChart
             // 
             this.CovidChart.DataSource = this.salesModelBindingSource;
-            xyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Quarter;
+            xyDiagram1.AxisX.DateTimeScaleOptions.AutoGrid = false;
+            xyDiagram1.AxisX.DateTimeScaleOptions.GridAlignment = DevExpress.XtraCharts.DateTimeGridAlignment.Month;
+            xyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
             xyDiagram1.AxisX.MinorCount = 3;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
@@ -81,7 +83,7 @@ namespace CosmeticSolutionSystem
             this.CovidChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
             this.CovidChart.SeriesTemplate.ArgumentDataMember = "Date";
             this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
-            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnitMultiplier = 1;
+            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnitMultiplier = 5;
             this.CovidChart.SeriesTemplate.SeriesDataMember = "CategoryName";
             this.CovidChart.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
             this.CovidChart.SeriesTemplate.View = stackedBarSeriesView1;
