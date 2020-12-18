@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace CosmeticSolutionSystem.Data.Models
 {
-    public class VeganBrandModel
+    public class HourlySales
     {
-        public int Year { get; set; }
-
-        public int Quantity { get; set; }
+        public int Hour { get; set; }
+        public int CustomerCount { get; set; }
     }
-
-    
 }

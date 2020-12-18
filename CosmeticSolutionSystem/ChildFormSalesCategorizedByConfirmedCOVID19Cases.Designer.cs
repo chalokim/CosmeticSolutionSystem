@@ -31,7 +31,12 @@ namespace CosmeticSolutionSystem
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY1 = new DevExpress.XtraCharts.SecondaryAxisY();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel1 = new DevExpress.XtraCharts.PointSeriesLabel();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
             DevExpress.XtraCharts.StackedBarSeriesView stackedBarSeriesView1 = new DevExpress.XtraCharts.StackedBarSeriesView();
+            this.covidModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.CovidChart = new DevExpress.XtraCharts.ChartControl();
             this.salesModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -39,11 +44,20 @@ namespace CosmeticSolutionSystem
             this.btnForward = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.covidModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CovidChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.salesModelBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // covidModelBindingSource
+            // 
+            this.covidModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.CovidModel);
             // 
             // labelControl2
             // 
@@ -58,28 +72,45 @@ namespace CosmeticSolutionSystem
             this.labelControl2.ShowLineShadow = false;
             this.labelControl2.Size = new System.Drawing.Size(750, 30);
             this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "3개월간 코로나 확진자 수에 따른 카테고리별 판매량";
+            this.labelControl2.Text = "5개월간 코로나 확진자 수에 따른 카테고리별 판매량";
             // 
             // CovidChart
             // 
             this.CovidChart.DataSource = this.salesModelBindingSource;
-            xyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Quarter;
+            xyDiagram1.AxisX.DateTimeScaleOptions.AutoGrid = false;
+            xyDiagram1.AxisX.DateTimeScaleOptions.GridAlignment = DevExpress.XtraCharts.DateTimeGridAlignment.Month;
+            xyDiagram1.AxisX.DateTimeScaleOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
             xyDiagram1.AxisX.MinorCount = 3;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
             xyDiagram1.AxisX.WholeRange.EndSideMargin = 2.5D;
             xyDiagram1.AxisX.WholeRange.StartSideMargin = 2.5D;
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            secondaryAxisY1.AxisID = 0;
+            secondaryAxisY1.Name = "Secondary AxisY 1";
+            secondaryAxisY1.VisibleInPanesSerializable = "-1";
+            xyDiagram1.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
+            secondaryAxisY1});
             this.CovidChart.Diagram = xyDiagram1;
             this.CovidChart.Legend.Name = "Default Legend";
-            this.CovidChart.Location = new System.Drawing.Point(18, 51);
+            this.CovidChart.Location = new System.Drawing.Point(24, 48);
             this.CovidChart.Name = "CovidChart";
             this.CovidChart.PaletteName = "Concourse";
             this.CovidChart.SeriesDataMember = "CategoryName";
-            this.CovidChart.SeriesSerializable = new DevExpress.XtraCharts.Series[0];
+            series1.ArgumentDataMember = "Month";
+            series1.DataSource = this.covidModelBindingSource;
+            pointSeriesLabel1.LineStyle.Thickness = 10;
+            series1.Label = pointSeriesLabel1;
+            series1.Name = "확진자 수";
+            series1.ValueDataMembersSerializable = "ConfirmedCount";
+            lineSeriesView1.AxisYName = "Secondary AxisY 1";
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(73)))), ((int)(((byte)(125)))));
+            series1.View = lineSeriesView1;
+            this.CovidChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series1};
             this.CovidChart.SeriesTemplate.ArgumentDataMember = "Date";
             this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnit = DevExpress.XtraCharts.DateTimeMeasureUnit.Month;
-            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnitMultiplier = 1;
+            this.CovidChart.SeriesTemplate.DateTimeSummaryOptions.MeasureUnitMultiplier = 5;
             this.CovidChart.SeriesTemplate.SeriesDataMember = "CategoryName";
             this.CovidChart.SeriesTemplate.ValueDataMembersSerializable = "Quantity";
             this.CovidChart.SeriesTemplate.View = stackedBarSeriesView1;
@@ -155,7 +186,12 @@ namespace CosmeticSolutionSystem
             this.Name = "ChildFormSalesCategorizedByConfirmedCOVID19Cases";
             this.Text = "코로나 확진자 수에 따른 카테고리별 판매량";
             this.Load += new System.EventHandler(this.ChildFormSalesCategorizedByConfirmedCOVID19Cases_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.covidModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(stackedBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CovidChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.salesModelBindingSource)).EndInit();
@@ -171,5 +207,6 @@ namespace CosmeticSolutionSystem
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.BindingSource salesModelBindingSource;
+        private System.Windows.Forms.BindingSource covidModelBindingSource;
     }
 }

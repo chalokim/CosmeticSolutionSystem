@@ -14,5 +14,11 @@ namespace CosmeticSolutionSystem.Data.Models
 
         public string CategoryName { get; set; }
 
+
+
     }
+    
+
+
+
 }
