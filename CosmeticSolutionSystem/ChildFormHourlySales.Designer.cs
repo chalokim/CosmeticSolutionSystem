@@ -32,16 +32,15 @@ namespace CosmeticSolutionSystem
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel1 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.dateEditSearch = new DevExpress.XtraEditors.DateEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.chartControl2 = new DevExpress.XtraCharts.ChartControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.hourlySalesModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
@@ -51,11 +50,11 @@ namespace CosmeticSolutionSystem
             ((System.ComponentModel.ISupportInitialize)(this.chartControl2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hourlySalesModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +62,6 @@ namespace CosmeticSolutionSystem
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.dateEditSearch);
-            this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Controls.Add(this.chartControl2);
             this.layoutControl1.Controls.Add(this.labelControl2);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,7 +76,7 @@ namespace CosmeticSolutionSystem
             // dateEditSearch
             // 
             this.dateEditSearch.EditValue = null;
-            this.dateEditSearch.Location = new System.Drawing.Point(800, 521);
+            this.dateEditSearch.Location = new System.Drawing.Point(800, 526);
             this.dateEditSearch.Name = "dateEditSearch";
             this.dateEditSearch.Properties.BeepOnError = true;
             this.dateEditSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -102,17 +100,6 @@ namespace CosmeticSolutionSystem
             this.dateEditSearch.TabIndex = 14;
             this.dateEditSearch.SelectionChanged += new System.EventHandler(this.dateEditSearch_SelectionChanged);
             // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.Location = new System.Drawing.Point(12, 521);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(105, 29);
-            this.simpleButton1.StyleController = this.layoutControl1;
-            this.simpleButton1.TabIndex = 13;
-            this.simpleButton1.Text = "뒤로가기";
-            // 
             // chartControl2
             // 
             this.chartControl2.DataSource = this.hourlySalesModelBindingSource;
@@ -126,13 +113,16 @@ namespace CosmeticSolutionSystem
             this.chartControl2.Location = new System.Drawing.Point(12, 53);
             this.chartControl2.Name = "chartControl2";
             series1.ArgumentDataMember = "Hour";
+            sideBySideBarSeriesLabel1.TextPattern = "{V}명";
+            series1.Label = sideBySideBarSeriesLabel1;
+            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             series1.Name = "방문자 수";
             series1.ValueDataMembersSerializable = "CustomerCount";
             this.chartControl2.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
             this.chartControl2.SeriesTemplate.ArgumentDataMember = "CustomerId";
             this.chartControl2.SeriesTemplate.ValueDataMembersSerializable = "CustomerId";
-            this.chartControl2.Size = new System.Drawing.Size(890, 464);
+            this.chartControl2.Size = new System.Drawing.Size(890, 469);
             this.chartControl2.TabIndex = 12;
             // 
             // labelControl2
@@ -160,7 +150,6 @@ namespace CosmeticSolutionSystem
             this.layoutControlItem1,
             this.layoutControlItem2,
             this.emptySpaceItem1,
-            this.layoutControlItem4,
             this.layoutControlItem3});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(914, 562);
@@ -180,33 +169,24 @@ namespace CosmeticSolutionSystem
             this.layoutControlItem2.Control = this.chartControl2;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 41);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(894, 468);
+            this.layoutControlItem2.Size = new System.Drawing.Size(894, 473);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(109, 509);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 514);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(641, 33);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(750, 28);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.simpleButton1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(0, 509);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(109, 33);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.dateEditSearch;
-            this.layoutControlItem3.Location = new System.Drawing.Point(750, 509);
+            this.layoutControlItem3.Location = new System.Drawing.Point(750, 514);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(144, 33);
+            this.layoutControlItem3.Size = new System.Drawing.Size(144, 28);
             this.layoutControlItem3.Text = "조회";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(26, 18);
             // 
@@ -223,19 +203,18 @@ namespace CosmeticSolutionSystem
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ChildFormHourlySales";
             this.Text = "시간대별 구매자 수 분석";
-            this.Load += new System.EventHandler(this.ChildFormHourlySales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateEditSearch.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hourlySalesModelBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -250,9 +229,7 @@ namespace CosmeticSolutionSystem
         private DevExpress.XtraCharts.ChartControl chartControl2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraEditors.DateEdit dateEditSearch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
     }

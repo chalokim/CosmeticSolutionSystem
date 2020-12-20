@@ -14,7 +14,6 @@ namespace CosmeticSolutionSystem
 {
     public partial class ChildFormSalesOfVeganCosmetic : Form
     {
-        XYDiagram diagram;
         public ChildFormSalesOfVeganCosmetic()
         {
             InitializeComponent();

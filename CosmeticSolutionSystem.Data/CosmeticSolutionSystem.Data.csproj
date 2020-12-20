@@ -106,6 +106,7 @@
     <Compile Include="Models\TopWorstProductModel.cs" />
     <Compile Include="Models\HourlySales.cs" />
     <Compile Include="Models\VeganBrandModel.cs" />
+    <Compile Include="Models\YearlyBrandModel.cs" />
     <Compile Include="Product.cs">
       <DependentUpon>CosmeticSolutionSystem.tt</DependentUpon>
     </Compile>
