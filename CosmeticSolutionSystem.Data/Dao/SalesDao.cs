@@ -346,7 +346,7 @@ namespace CosmeticSolutionSystem.Data
         }
 
 
-        public static List<TopWorstProductModel> GetTopProductByMonth(DateTime month)
+        public static List<TopWorstProductModel> GetTopProductByMonth(int topCount, DateTime month)
         {
             DateTime start = new DateTime(month.Year, month.Month, 1);
             DateTime end = start.AddMonths(1); // 기간을 한달로 설정
@@ -360,7 +360,7 @@ namespace CosmeticSolutionSystem.Data
                                 ProductName = x.Product.ProductName,
                                 Quantity = x.Quantity,
                             }).GroupBy(x => x.ProductName).Select(
-                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(5);
+                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(topCount);
 
                 var list = query.ToList();
 
@@ -375,7 +375,7 @@ namespace CosmeticSolutionSystem.Data
             }
         }
 
-        public static List<TopWorstProductModel> GetTopProductByYear(DateTime year)
+        public static List<TopWorstProductModel> GetTopProductByYear(int topCount, DateTime year)
         {
             DateTime start = new DateTime(year.Year, 1, 1);
             DateTime end = start.AddYears(1); // 기간을 1년으로 설정
@@ -389,7 +389,7 @@ namespace CosmeticSolutionSystem.Data
                                  ProductName = x.Product.ProductName,
                                  Quantity = x.Quantity,
                              }).GroupBy(x => x.ProductName).Select(
-                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(5);
+                   group => new { group.FirstOrDefault().ProductName, Quantity = group.Sum(x => x.Quantity) }).OrderByDescending(x => x.Quantity).Take(topCount);
 
                 var list = query.ToList();
 
@@ -398,6 +398,129 @@ namespace CosmeticSolutionSystem.Data
                 foreach (var x in list)
                 {
                     model.Add(new TopWorstProductModel(x.ProductName, x.Quantity));
+                }
+
+                return model;
+            }
+        }
+
+
+        public static List<SalesVolumeMonthCategoryModel> GetSalesVolumeByMonthCategory(DateTime month)
+        {
+            DateTime start = new DateTime(month.Year, month.Month, 1);
+            DateTime end = start.AddYears(1);
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                //context.Database.Log = (log) => Debug.WriteLine(log);
+
+                var queryX = from x in context.Categories
+                             orderby x.CategoryName
+                             select x.CategoryName;
+
+                int i = 0;
+
+                var listX = queryX.ToList();
+
+                foreach (var x in listX)
+                {
+                    categoryArr[i] = x.ToString();
+                    i++;
+                }
+
+                var query = (from x in context.SalesLines
+                             where DbFunctions.TruncateTime(x.Sale.SelledAt) >= DbFunctions.TruncateTime(start)
+                             && DbFunctions.TruncateTime(x.Sale.SelledAt) <= DbFunctions.TruncateTime(end)
+                             select new
+                             {
+                                 Date = x.Sale.SelledAt,
+                                 CategoryName = x.Product.Category.CategoryName,
+                                 Quantity = x.Quantity
+                             }).GroupBy(x => new { x.Date.Month, x.CategoryName }).Select
+                                (group => new { group.FirstOrDefault().Date, group.FirstOrDefault().CategoryName, Quantity = group.Sum(x => x.Quantity) }
+                             );
+
+                var list = query.ToList();
+
+                List<SalesVolumeMonthCategoryModel> model = new List<SalesVolumeMonthCategoryModel>();
+
+                for (int y = 0; y < 12; y++)
+                {
+                    foreach (var item in categoryArr)
+                    {
+                        model.Add(new SalesVolumeMonthCategoryModel(start.AddMonths(y), item.ToString(), 0));
+                    }
+                }
+
+                foreach (var x in list)
+                {
+                    SalesVolumeMonthCategoryModel categorymodel = model.Find( y => y.Date == new DateTime(x.Date.Year, x.Date.Month, 1) && y.CategoryName == x.CategoryName);
+
+                    if (categorymodel != null)
+                    {
+                        categorymodel.Date = new DateTime(x.Date.Year, x.Date.Month, 1);
+                        categorymodel.CategoryName = x.CategoryName;
+                        categorymodel.Quantity = x.Quantity;
+                    }
+                }
+
+                return model;
+            }
+        }
+
+        public static List<SalesVolumeMonthCategoryModel> GetSalesVolumeByDayCategory(DateTime day)
+        {
+            DateTime start = day;
+            DateTime end = start.AddDays(7);
+
+            using (var context = new CosmeticSolutionSystemEntities())
+            {
+                //context.Database.Log = (log) => Debug.WriteLine(log);
+
+                var queryX = from x in context.Categories
+                             orderby x.CategoryName
+                             select x.CategoryName;
+
+                int i = 0;
+
+                var listX = queryX.ToList();
+
+                foreach (var x in listX)
+                {
+                    categoryArr[i] = x.ToString();
+                    i++;
+                }
+
+                var query = (from x in context.SalesLines
+                             where DbFunctions.TruncateTime(x.Sale.SelledAt) >= DbFunctions.TruncateTime(start)
+                             && DbFunctions.TruncateTime(x.Sale.SelledAt) <= DbFunctions.TruncateTime(end)
+                             select new
+                             {
+                                 Date = x.Sale.SelledAt,
+                                 CategoryName = x.Product.Category.CategoryName,
+                                 Quantity = x.Quantity
+                             }).GroupBy(x => new { x.Date.Day, x.CategoryName }).Select
+                                (group => new { group.FirstOrDefault().Date, group.FirstOrDefault().CategoryName, Quantity = group.Sum(x => x.Quantity) }
+                             );
+
+                var list = query.ToList();
+
+                List<SalesVolumeMonthCategoryModel> model = new List<SalesVolumeMonthCategoryModel>();
+
+                for (int y = 0; y < 7; y++)
+                {
+                    foreach (var item in categoryArr)
+                    {
+                        model.Add(new SalesVolumeMonthCategoryModel(start.AddDays(y), item.ToString(), 0));
+                    }
+                }
+
+                foreach (var item in list)
+                {
+                    SalesVolumeMonthCategoryModel categoryModel = model.Find(x => x.CategoryName == item.CategoryName && new DateTime(x.Date.Year,x.Date.Month, x.Date.Day) == new DateTime(item.Date.Year, item.Date.Month, item.Date.Day));
+
+                    if (categoryModel != null)
+                        categoryModel.Quantity = item.Quantity;
                 }
 
                 return model;
