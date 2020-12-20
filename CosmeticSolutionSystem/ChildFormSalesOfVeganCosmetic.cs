@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CosmeticSolutionSystem.Data;
+using DevExpress.XtraCharts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,12 @@ namespace CosmeticSolutionSystem
         public ChildFormSalesOfVeganCosmetic()
         {
             InitializeComponent();
+        }
+
+        private void ChildFormSalesOfVeganCosmetic_Load(object sender, EventArgs e)
+        {
+            veganBrandModelBindingSource.DataSource = Dao.Sales.VeganSalesPerYear(3);
+
         }
     }
 }

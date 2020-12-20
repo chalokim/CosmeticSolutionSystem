@@ -23,6 +23,8 @@ namespace CosmeticSolutionSystem
         private void ChildFormDailyMonthlySales_Load(object sender, EventArgs e)
         {
             InitializeControl();
+            //layoutControl1.Hide();
+            //chartDayMonthSales.Hide();
         }
 
         private void InitializeControl()
@@ -38,6 +40,14 @@ namespace CosmeticSolutionSystem
             {
                 comboBoxInterval.Items.Add(x);
             }
+
+            comboBoxInterval.SelectedItem = "월";
+
+            // 화면 로드 시 데이터를 조회한다
+            dateTimePicker.Value = new DateTime(DateTime.Now.Year, 1, 1);
+
+            checkBoxCategory.Checked = true;
+            btnSearch_Click(null, null);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -49,52 +59,109 @@ namespace CosmeticSolutionSystem
                 return;
             }
 
-            // 설정된 조건으로 검색한다
-            Button btn = sender as Button;
-            if (btn == null)
-                return;
-
             // 월을 선택하면
             if (comboBoxInterval.SelectedItem.ToString() == CosmeticConstant.DateMonth)
             {
                 DateTime month = dateTimePicker.Value;
-                List<DayMonthSalesModel> list = SalesDao.GetSalesVolumeByMonth(month);
 
-                ChartTitle chartTitle1 = new ChartTitle();
+                // 카테고리 선택했을 때
+                if (checkBoxCategory.Checked == true)
+                {
+                    chartDayMonthSales.Hide();
+                    chartControlSalesVolumeDayCategory.Hide();
+                    chartControlSalesVolumeMonthCategory.Show();
 
-                // Define the text for the titles.
-                chartTitle1.Text = "월별 판매량";
+                    List<SalesVolumeMonthCategoryModel> list = SalesDao.GetSalesVolumeByMonthCategory(month);
 
-                chartDayMonthSales.Titles.Clear();
-                chartDayMonthSales.Titles.AddRange( new ChartTitle[] { chartTitle1 } );
+                    ChartHelper.ChangeChartTitle(chartControlSalesVolumeMonthCategory, string.Format($"카테고리별 월별 판매량 ({month.Year}.{month.Month} - {month.AddMonths(11).Year}.{month.AddMonths(11).Month})"));
 
-                bindingSourceMonthDaySales.DataSource = list;
+                    //BarSeriesView view = chartControlSalesVolumeMonthCategory.SeriesTemplate.View as BarSeriesView;
+                    //view.BarWidth = 20;
 
-                chartDayMonthSales.Series[0].Visible = true;
-                chartDayMonthSales.Series[1].Visible = false;
+                    bindingSourceSalesVolumeMonthCategoryModel.DataSource = list;
+                }
+                else
+                {
+                    List<DayMonthSalesModel> list = SalesDao.GetSalesVolumeByMonth(month);
+
+                    ChartHelper.ChangeChartTitle(chartDayMonthSales, string.Format($"월별 판매량 ({month.Year}.{month.Month} - {month.AddMonths(11).Year}.{month.AddMonths(11).Month})"));
+                    ChartTitle chartTitle1 = new ChartTitle();
+
+                    bindingSourceMonthDaySales.DataSource = list;
+
+                    chartDayMonthSales.Series[0].Visible = true;
+                    chartDayMonthSales.Series[1].Visible = false;
+
+                    chartDayMonthSales.Show();
+                    chartControlSalesVolumeMonthCategory.Hide();
+                    chartControlSalesVolumeDayCategory.Hide();
+                }
             }
             // 일을 선택하면 선택한 날의 카테고리별 판매 데이터를 출력한다
             else if (comboBoxInterval.SelectedItem.ToString() == CosmeticConstant.DateDay)
             {
                 DateTime day = dateTimePicker.Value;
-                List<DaySalesByCategoryModel> list = SalesDao.GetSalesVolumeByDay(day);
 
-                ChartTitle chartTitle1 = new ChartTitle();
+                if (checkBoxCategory.Checked == true)
+                {
+                    chartDayMonthSales.Hide();
+                    chartControlSalesVolumeMonthCategory.Hide();
+                    chartControlSalesVolumeDayCategory.Show();
 
-                // Define the text for the titles.
-                chartTitle1.Text = "일별 판매량";
+                    List<SalesVolumeMonthCategoryModel> list = SalesDao.GetSalesVolumeByDayCategory(day);
 
-                chartDayMonthSales.Series[0].Visible = false;
-                chartDayMonthSales.Series[1].Visible = true;
+                    ChartHelper.ChangeChartTitle(chartControlSalesVolumeDayCategory, string.Format($"카테고리별 일별 판매량 ({day.Year}.{day.Month}.{day.Day} - {day.AddDays(6).Year}.{day.AddDays(6).Month}.{day.AddDays(6).Day})"));
 
-                chartDayMonthSales.Titles.Clear();
-                chartDayMonthSales.Titles.AddRange(new ChartTitle[] { chartTitle1 });
+                    BarSeriesView view = chartControlSalesVolumeDayCategory.SeriesTemplate.View as BarSeriesView;
+                    view.BarWidth = 0.3D;
 
-                bindingSourceDaySales.DataSource = list;
+                    bindingSourceSalesVolumeDayCategoryModel.DataSource = list;
+                }
+                else
+                {
+                    List<DaySalesByCategoryModel> list = SalesDao.GetSalesVolumeByDay(day);
 
-                chartDayMonthSales.Series[1].Visible = true;
-                chartDayMonthSales.Series[0].Visible = false;
+                    ChartHelper.ChangeChartTitle(chartDayMonthSales, string.Format($"판매량 {day.Year}.{day.Month}.{day.Day}"));
+                    ChartTitle chartTitle1 = new ChartTitle();
+
+                    bindingSourceDaySales.DataSource = list;
+
+                    chartDayMonthSales.Series[1].Visible = true;
+                    chartDayMonthSales.Series[0].Visible = false;
+
+                    chartDayMonthSales.Show();
+                    chartControlSalesVolumeMonthCategory.Hide();
+                    chartControlSalesVolumeDayCategory.Hide();
+                }
             }
+        }
+
+        private void ChildFormDailyMonthlySales_SizeChanged(object sender, EventArgs e)
+        {
+            chartControlSalesVolumeMonthCategory.Location = new Point(0,layoutControl.Height+9);
+            
+            chartControlSalesVolumeMonthCategory.Width = this.Size.Width;
+            if (chartControlSalesVolumeMonthCategory.Width > 1600)
+                chartControlSalesVolumeMonthCategory.Width -= (chartControlSalesVolumeMonthCategory.Width - 1600 );
+
+            chartControlSalesVolumeMonthCategory.Height = this.Size.Height - layoutControl.Height - 9;
+            //chartControlSalesVolumeMonthCategory.Dock = DockStyle.Bottom;
+
+            chartDayMonthSales.Location = new Point(0, layoutControl.Height + 9);
+            chartDayMonthSales.Width = this.Size.Width;
+            if (chartDayMonthSales.Width > 1500)
+                chartDayMonthSales.Width -= (chartDayMonthSales.Width - 1500);
+
+            chartDayMonthSales.Height = this.Size.Height - layoutControl.Height - 9;
+            //chartDayMonthSales.Dock = DockStyle.Bottom;
+
+            chartControlSalesVolumeDayCategory.Location = new Point(0, layoutControl.Height + 9);
+            chartControlSalesVolumeDayCategory.Width = this.Size.Width;
+            if (chartControlSalesVolumeDayCategory.Width > 1600)
+                chartControlSalesVolumeDayCategory.Width -= (chartControlSalesVolumeDayCategory.Width - 1600);
+
+            chartControlSalesVolumeDayCategory.Height = this.Size.Height - layoutControl.Height - 9;
+            //chartDayMonthSales.Dock = DockStyle.Bottom;
         }
     }
 }
