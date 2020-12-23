@@ -41,7 +41,7 @@ Microsoft MS-SQL Server 2019
 3. 일/월별 판매량 화면
 <img src="https://github.com/SieonLee/CosmeticSolutionSystem/blob/master/Document/3.%20%EC%9D%BC%EB%B3%84%20%EC%9B%94%EB%B3%84%20%ED%8C%90%EB%A7%A4%EB%9F%89%20%ED%99%94%EB%A9%B4.jpg" width="80%">
 
-- 일별, 월별 제품 판매량을 모두 합산한 데이터, 카테고리별로 구분하여 합산한 데이터를 Stacked Bar 차트 형태로 출력한다
+- 일별, 월별 제품 판매량을 모두 합산한 데이터, 카테고리별로 구분하여 합산한 데이터를 Stakced Bar 차트 형태로 출력한다
 
 
 4. 시간대별 고객 구매자 수 분석 화면

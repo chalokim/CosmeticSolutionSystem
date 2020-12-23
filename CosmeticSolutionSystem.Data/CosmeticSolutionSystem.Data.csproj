@@ -133,6 +133,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CosmeticSolutionSystem.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram.cd" />
     <None Include="CosmeticSolutionSystem.edmx.diagram">
       <DependentUpon>CosmeticSolutionSystem.edmx</DependentUpon>
     </None>

@@ -32,17 +32,20 @@ namespace CosmeticSolutionSystem
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            this.veganBrandModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.veganBrandModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.veganBrandModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // chartControl1
             // 
+            this.chartControl1.AppearanceNameSerializable = "Light";
             this.chartControl1.DataSource = this.veganBrandModelBindingSource;
             xyDiagram1.AxisX.NumericScaleOptions.AutoGrid = false;
             xyDiagram1.AxisX.Title.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -61,14 +64,12 @@ namespace CosmeticSolutionSystem
             series1.ArgumentDataMember = "Year";
             series1.Name = "Series 1";
             series1.ValueDataMembersSerializable = "Quantity";
+            sideBySideBarSeriesView1.ColorEach = true;
+            series1.View = sideBySideBarSeriesView1;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};
             this.chartControl1.Size = new System.Drawing.Size(800, 366);
             this.chartControl1.TabIndex = 0;
-            // 
-            // veganBrandModelBindingSource
-            // 
-            this.veganBrandModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.VeganBrandModel);
             // 
             // labelControl2
             // 
@@ -84,7 +85,11 @@ namespace CosmeticSolutionSystem
             this.labelControl2.ShowLineShadow = false;
             this.labelControl2.Size = new System.Drawing.Size(887, 37);
             this.labelControl2.TabIndex = 17;
-            this.labelControl2.Text = "카테고리별 연령대별 판매량";
+            this.labelControl2.Text = "비건 브랜드 최근 3년 연도별 판매량";
+            // 
+            // veganBrandModelBindingSource
+            // 
+            this.veganBrandModelBindingSource.DataSource = typeof(CosmeticSolutionSystem.Data.Models.VeganBrandModel);
             // 
             // ChildFormSalesOfVeganCosmetic
             // 
@@ -97,6 +102,7 @@ namespace CosmeticSolutionSystem
             this.Text = "비건 브랜드 매출";
             this.Load += new System.EventHandler(this.ChildFormSalesOfVeganCosmetic_Load);
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.veganBrandModelBindingSource)).EndInit();
